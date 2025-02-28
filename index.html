@@ -1,0 +1,3230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+    <title>Home Futures | Smarter Development. Better Homes.</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split-type/0.3.4/split-type.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            /* Primary Typeface: Poppins */
+            background-color: #050505;
+            /* Deep Black/Navy */
+            color: #FFFFFF;
+            /* Subtle Off-Whites and Neutrals */
+            overflow-x: hidden;
+        }
+
+        html {
+            /* overflow: hidden;  REMOVED this line - this was locking the scroll */
+        }
+
+        /* IKI.AI inspired glow effects */
+        .glow-effect {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            border-radius: 100%;
+            /* Modified glow colors to red - Brand Primary Color */
+            background: radial-gradient(circle, rgba(255, 51, 51, 0.15) 0%, rgba(204, 0, 0, 0.05) 50%, rgba(5, 5, 5, 0) 70%);
+            filter: blur(50px);
+            z-index: 0;
+        }
+
+        .glow-purple {
+            /* Modified glow colors to red - Brand Primary Color */
+            background: radial-gradient(circle, rgba(255, 51, 51, 0.15) 0%, rgba(204, 0, 0, 0.05) 50%, rgba(5, 5, 5, 0) 70%);
+        }
+
+        .gradient-text {
+            /* Modified gradient to red and a slightly darker red - Brand Primary Color variations */
+            background: linear-gradient(90deg, #FF3333 0%, #CC0000 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Framer-inspired card designs */
+        .framer-card {
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transform-origin: center bottom;
+        }
+
+        .framer-card:hover {
+            transform: translateY(-8px) scale(1.02);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* LaunchDarkly-inspired button styles */
+        .button-primary {
+            /* Modified gradient to red - Brand Primary Color */
+            background: linear-gradient(90deg, #FF3333 0%, #CC0000 100%);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .button-primary::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            /* Modified gradient to red - Brand Primary Color */
+            background: linear-gradient(90deg, #CC0000 0%, #FF3333 100%);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: -1;
+        }
+
+        .button-primary:hover::before {
+            left: 0;
+        }
+
+        .button-primary:hover {
+            transform: translateY(-2px);
+            /* Modified shadow to red - Brand Primary Color */
+            box-shadow: 0 10px 25px -5px rgba(255, 51, 51, 0.4);
+        }
+
+        .button-secondary {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .button-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* IKI.AI-inspired navbar */
+        .navbar {
+            backdrop-filter: blur(10px);
+            background: rgba(5, 5, 5, 0.8);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        /* 3D card effect */
+        .card-3d {
+            transform-style: preserve-3d;
+            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .card-3d:hover {
+            transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
+        }
+
+        /* IKI.AI-inspired collection cards */
+        .collection-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0;
+            /* ADDED - for animation */
+            transform: translateY(30px);
+            /* ADDED - for animation */
+        }
+
+        .collection-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            /* Modified gradient to red - Brand Primary Color */
+            background: linear-gradient(140deg, rgba(255, 51, 51, 0.1) 0%, rgba(204, 0, 0, 0.1) 100%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .collection-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .collection-card:hover::before {
+            opacity: 1;
+        }
+
+        /* Animated particles */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: white;
+            opacity: 0;
+            animation: float 8s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+                opacity: 0;
+            }
+
+            25% {
+                opacity: 0.5;
+            }
+
+            75% {
+                opacity: 0.5;
+            }
+
+            100% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0;
+            }
+        }
+
+        /* LaunchDarkly inspired feature list */
+        .feature-item {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-icon {
+            /* Modified gradient to red - Brand Primary Color */
+            background: linear-gradient(140deg, rgba(255, 51, 51, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
+            transition: all 0.5s ease;
+        }
+
+        .feature-item:hover .feature-icon {
+            transform: scale(1.15) rotate(5deg);
+            /* Modified gradient to red - Brand Primary Color */
+            background: linear-gradient(140deg, rgba(255, 51, 51, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
+        }
+
+        /* Blob animation */
+        .blob {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.15;
+            animation: blob-animation 20s infinite alternate ease-in-out;
+        }
+
+        @keyframes blob-animation {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+
+            33% {
+                transform: scale(1.2) translate(5%, 5%);
+            }
+
+            66% {
+                transform: scale(0.8) translate(-5%, 5%);
+            }
+
+            100% {
+                transform: scale(1.1) translate(0, -5%);
+            }
+        }
+
+        /* Grid system inspired by IKI.AI */
+        .iki-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            transform-style: preserve-3d;
+        }
+
+        /* Framer-inspired benefit cards */
+        .benefit-card {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transform-origin: center center;
+            opacity: 0;
+            /* ADDED - for animation */
+            transform: translateY(30px);
+            /* ADDED - for animation */
+        }
+
+        .benefit-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .benefit-card:hover .icon-wrapper {
+            transform: translateY(-10px) scale(1.1);
+        }
+
+        .icon-wrapper {
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .image-placeholder {
+            position: relative;
+            overflow: hidden;
+            border-radius: 16px;
+            background: linear-gradient(140deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+
+        }
+
+        .slide-in {
+            animation: slide-in 0.8s forwards;
+            transform: translateX(100%);
+        }
+
+
+
+        .text-wrapper {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            transition: transform 0.8s ease-out, opacity 0.8s ease-out;
+            transform: translateY(80px);
+            opacity: 0;
+        }
+
+
+        .active {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .exiting {
+            transform: translateY(-80px);
+            opacity: 0;
+        }
+
+        .text {
+            font-size: 120px;
+            font-weight: bold;
+            text-align: center;
+            animation: pulse 1.5s infinite alternate, glow 1.5s infinite alternate;
+            position: relative;
+            letter-spacing: 2px;
+        }
+
+
+        /* Pulse Effect */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            100% {
+                transform: scale(1.1);
+            }
+        }
+
+
+        .text:hover {
+            animation: wave 0.5s infinite alternate ease-in-out;
+        }
+
+        /* Honeycomb Styles */
+        #honeycomb-section,
+        #collection-section,
+        #benefit-section,
+        #cta-section,
+        #footer-section,
+        #extra-features,
+        /* ADDED */
+        #community,
+        #phone-app-section
+        /* ADDED */
+
+        /* ADDED - Assuming 'community' section is the 'highlights' section */
+            {
+            position: relative;
+            overflow: hidden;
+        }
+
+        #honeycomb-container,
+        #honeycomb-container-collection,
+        #honeycomb-container-benefit,
+        #honeycomb-container-cta,
+        #honeycomb-container-footer,
+        #honeycomb-container-extra-features,
+        /* ADDED */
+        #honeycomb-container-community,
+        #honeycomb-container-app
+        /* ADDED */
+
+        /* ADDED */
+            {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #honeycomb-canvas,
+        #honeycomb-canvas-collection,
+        #honeycomb-canvas-benefit,
+        #honeycomb-canvas-cta,
+        #honeycomb-canvas-footer,
+        #honeycomb-canvas-extra-features,
+        /* ADDED */
+        #honeycomb-canvas-community,
+        #honeycomb-canvas-app
+        /* ADDED */
+
+        /* ADDED */
+            {
+            display: block;
+            /* Ensure canvas takes up the full container */
+        }
+
+        .honeycomb-overlay,
+        .honeycomb-overlay-collection,
+        .honeycomb-overlay-benefit,
+        .honeycomb-overlay-cta,
+        .honeycomb-overlay-footer,
+        .honeycomb-overlay-extra-features,
+        /* ADDED */
+        .honeycomb-overlay-community,
+        .honeycomb-overlay-app
+        /* ADDED */
+
+        /* ADDED */
+            {
+            position: absolute;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.6);
+            /* Dark overlay, adjust opacity as needed */
+            pointer-events: none;
+            /* Make sure overlay doesn't interfere with interactions */
+        }
+
+        /* Phone App Section Hover Effect */
+        #phone-app-section:hover {
+            transform: scale(1.01);
+            /* Slight scale up on hover */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+            /* Add shadow on hover */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Smooth transition */
+        }
+
+        
+        .feature-card {
+            background-color: #1A1A1A;
+            /* Dark Greys and Charcoals */
+            border-radius: 16px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 34px;
+        }
+
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #808080;
+            /* Dark Greys and Charcoals */
+            transition: .4s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 26px;
+            width: 26px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #FF3333;
+            /* Red: Brand Primary Color */
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(26px);
+        }
+
+        .download-btn {
+            background-color: white;
+            color: black;
+            border-radius: 24px;
+            padding: 10px 24px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+        }
+
+        .model-btn {
+            background-color: white;
+            color: black;
+            border-radius: 24px;
+            padding: 8px 20px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .model-btn:hover {
+            transform: scale(1.05);
+            background-color: #f0f0f0;
+        }
+
+        .model-btn.active {
+            background-color: #FF3333;
+            /* Red: Brand Primary Color */
+            color: white;
+        }
+
+        .collection-card {
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            backface-visibility: hidden;
+            perspective: 1000px;
+            transform-style: preserve-3d;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: #1A1A1A;
+            /* Dark Greys and Charcoals */
+        }
+
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
+        }
+
+        .collection-card:hover .card-image {
+            transform: scale(1.05);
+        }
+
+        .card-image {
+            transition: transform 0.5s ease;
+            height: 180px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .tag {
+            transition: all 0.2s ease;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 100px;
+            padding: 4px 10px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .tag:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .central-banner {
+            background: rgba(30, 30, 30, 0.3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background-color: white;
+            color: black;
+            border-radius: 100px;
+            padding: 8px 20px;
+            font-weight: 500;
+            transition: all 0.2s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: rgba(255, 255, 255, 0.9);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .overlay-card {
+            background-color: rgba(20, 20, 20, 0.95);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+        }
+
+        .moving-gradient {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, #ff0099, #493240, #2b5876, #4e4376);
+            background-size: 400% 400%;
+            animation: gradient 15s ease infinite;
+            opacity: 0.3;
+            mix-blend-mode: overlay;
+            pointer-events: none;
+        }
+
+        .collection-card {
+            height: 420px;
+            /* Base height for cards */
+            display: flex;
+            flex-direction: column;
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: #111111;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
+        }
+
+        /* Image section styling */
+        .collection-card .overflow-hidden {
+            height: 65%;
+            /* Image takes up more space like in IKI design */
+        }
+
+        .collection-card img.card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+
+        /* Content section styling */
+        .collection-card .p-4 {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .community-container {
+            overflow: hidden;
+            height: 100vh;
+            /* Adjust based on your container */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .community-list1 {
+            display: flex;
+            flex-direction: column;
+            animation: scrollUp 10s linear infinite;
+        }
+
+        .community-list2 {
+            display: flex;
+            flex-direction: column;
+            animation: scrollDown 10s linear infinite;
+        }
+
+        @keyframes scrollUp {
+            from {
+                transform: translateY(0%);
+            }
+
+            to {
+                transform: translateY(-100%);
+            }
+        }
+
+        @keyframes scrollDown {
+            from {
+                transform: translateY(0%);
+            }
+
+            to {
+                transform: translateY(100%);
+            }
+        }
+
+        
+    </style>
+</head>
+
+<body>
+    <!-- Decorative blobs -->
+    <div class="blob bg-red-600" style="width: 500px; height: 500px; top: -200px; left: -200px;"></div>
+    <div class="blob bg-red-600" style="width: 600px; height: 600px; bottom: 0; right: -300px;"></div>
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-black/30 backdrop-blur-md shadow-md px-6 py-6 navbar">
+        <div class="container mx-auto flex justify-between items-center">
+            <!-- Logo -->
+            <a href="/" class="logo-link">
+                <img src="oroshiuri-web-logo.png" alt="Home Futures Logo" class="h-8 md:h-10" />
+            </a>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+                <a href="/" class="nav-link">Home</a>
+                <a href="/affiliates" class="nav-link">Affiliates</a>
+                <a href="/benefits" class="nav-link">Benefits</a>
+                <a href="/about" class="nav-link">About</a>
+                <a href="#community" class="nav-link">Insights</a>
+            </div>
+
+            <!-- Buttons -->
+            <div class="hidden md:flex space-x-4 items-center">
+                <a href="/login" class="button-secondary px-4 py-2 rounded-full text-sm">Login</a>
+                <a href="#" class="button-primary px-6 py-2 rounded-full text-sm font-medium relative overflow-hidden">
+                    Get Started
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="md:hidden text-white focus:outline-none">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                </svg>
+            </button>
+        </div>
+
+        <!-- Mobile Menu (Hidden by Default) -->
+        <div id="mobile-menu"
+            class="hidden md:hidden absolute top-16 left-0 w-full bg-black/80 backdrop-blur-lg py-6 text-center">
+            <a href="/" class="mobile-nav-link">Home</a>
+            <a href="/affiliates" class="mobile-nav-link">Affiliates</a>
+            <a href="/benefits" class="mobile-nav-link">Benefits</a>
+            <a href="/about" class="mobile-nav-link">About</a>
+            <a href="#community" class="mobile-nav-link">Insights</a>
+            <a href="/login" class="block mt-4 button-secondary px-4 py-2 mx-auto w-3/4 rounded-full text-sm">Login</a>
+            <a href="#" class="block mt-3 button-primary px-6 py-2 mx-auto w-3/4 rounded-full text-sm font-medium">Get
+                Started</a>
+        </div>
+    </nav>
+
+    <!-- Tailwind Utility Classes -->
+    <style>
+        .nav-link {
+            @apply text-white text-lg font-medium relative transition duration-300 ease-in-out;
+        }
+
+        .nav-link::after {
+            content: "";
+            position: absolute;
+            width: 0%;
+            height: 2px;
+            background-color: #FF3333;
+            /* Red: Brand Primary Color */
+            left: 50%;
+            bottom: -4px;
+            transition: all 0.3s ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-nav-link {
+            @apply block py-3 text-white text-lg font-medium transition hover:text-red-400;
+        }
+    </style>
+
+    <!-- Mobile Menu Toggle Script -->
+    <script>
+        document.getElementById("menu-toggle").addEventListener("click", function () {
+            document.getElementById("mobile-menu").classList.toggle("hidden");
+        });
+    </script>
+
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center overflow-hidden">
+        <div id="particles-js" class="absolute inset-0"></div>
+
+        <div class="container mx-auto px-4 pt-20 pb-32 relative z-10 text-center">
+            <div class="container">
+                <div id="text-container"></div>
+            </div>
+
+
+            <div class="hero-buttons flex flex-col sm:flex-row justify-center gap-4 mt-12">
+                <!--<a href="#" class="button-primary px-8 py-4 rounded-full text-lg font-medium">
+                    Get Started
+                </a>
+                <a href="#" class="button-secondary px-8 py-4 rounded-full text-lg">
+                    Learn More
+                </a>-->
+            </div>
+        </div>
+    </section>
+
+    <!-- Video Section -->
+    <section id="video" class="py-20 bg-[#060606] relative overflow-hidden section">
+        <div id="honeycomb-container">
+            <canvas id="honeycomb-canvas"></canvas>
+        </div>
+        <div class="honeycomb-overlay"></div>
+
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <span
+                class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">ABOUT
+                US</span>
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 video-section-header">
+                <!-- ADDED CLASS -->
+                Discover Home Futures
+                <span class="gradient-text">in Action</span>
+            </h2>
+            <!-- ADDED CLASS -->
+            <p class="text-xl text-gray-300 mb-12 video-section-subheader">See how we're innovating the home development
+                market.</p>
+            <!-- ADDED CLASS -->
+            <div class="max-w-3xl mx-auto">
+                <video controls class="w-full rounded-xl overflow-hidden shadow-2xl video">
+                    <source src="Oroshiuri-Systems-720p-h264.mp4" type="video/mp4">
+                    <source src="your-video.webm" type="video/webm">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Features Section (IKI.AI-inspired "Extra features that empower your knowledge flow") -->
+    <section id="honeycomb-section" class="py-20 bg-[#060606] relative overflow-hidden section">
+        <div id="honeycomb-container">
+            <canvas id="honeycomb-canvas"></canvas>
+        </div>
+        <div class="honeycomb-overlay"></div>
+
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span
+                    class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">FEATURES</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 feature-section-header"> <!-- ADDED CLASS -->
+                    Empower your
+                    <span class="gradient-text">investment flow</span>
+                </h2>
+                <p class="text-xl text-gray-300 feature-section-subheader">The Oroshiuri System blends established
+                    investment strategies with
+                    innovative technology.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mt-16 relative z-10">
+                <!-- Feature Card 1 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Proven Investment Principles</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Applies fundamental concepts like compounding,
+                        leverage, and growth
+                        exposure to provide a strategic approach to real estate investing.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Feature Card 2 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Quick Completion of Brand-New Estates</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Recognizes the value of promptly completed estates
+                        in driving
+                        higher-than-usual growth rate in high-potential markets.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Feature Card 3 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Artificial Intelligence at Work</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Incorporates AI technology to enhance efficiency and
+                        decision-making by
+                        automating intricate data analysis and portfolio management.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Feature Card 4 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Structured Process</h3> <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Offers a systematic approach to building and growing
+                        a real estate
+                        portfolio, reducing uncertainty and facilitating efficient scaling.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Feature Card 5 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Efficient Collaboration</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Fosters effective relationships between all
+                        stakeholders, supporting cost
+                        efficiency and high-quality development that meets Oroshiuri standards.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Feature Card 6 -->
+                <div class="framer-card p-8 rounded-2xl feature-item">
+                    <div class="feature-icon h-16 w-16 flex items-center justify-center rounded-xl mb-6">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M12 11c0 3.517-1.009 6.799-2.753 9.571m-3.44-2.04l.054-.09A13.916 13.916 0 008 11a4 4 0 118 0c0 1.017-.07 2.019-.203 3m-2.118 6.844A21.88 21.88 0 0015.171 17m3.839 1.132c.645-2.266.99-4.659.99-7.132A8 8 0 008 4.07M3 15.364c.64-1.319 1-2.8 1-4.364 0-1.457.39-2.823 1.07-4" />
+                        </svg>
+                    </div>
+                    <h3 class="text-xl font-bold mb-4 feature-card-header">Tailored to Investors</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="text-gray-300 feature-card-subheader">Adapts to individual investor profiles including
+                        specific investment goals,
+                        risk tolerance, and experience, customisable to meet diverse needs.</p> <!-- ADDED CLASS -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefit Section-->
+
+    <section id="benefit-section" class="py-20 relative overflow-hidden bg-[#060606] section">
+        <div id="honeycomb-container-benefit">
+            <canvas id="honeycomb-canvas-benefit"></canvas>
+        </div>
+        <div class="honeycomb-overlay-benefit"></div>
+
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span
+                    class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">BENEFITS</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 benefit-section-header mt-4"> <!-- ADDED CLASS -->
+                    <span class="gradient-text">Membership</span> Benefits
+                </h2>
+                <p class="text-xl text-gray-300 benefit-section-subheader">Unlock exclusive opportunities and maximise
+                    your returns with our
+                    membership benefits.</p> <!-- ADDED CLASS -->
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Benefit card 1 -->
+
+                <div class="benefit-card p-8 rounded-2xl benefit-card-item"> <!-- ADDED CLASS -->
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div
+                            class="icon-wrapper h-12 w-12 rounded-full bg-gradient-to-br from-red-600 to-red-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z" />
+                            </svg>
+
+
+                        </div>
+                        <h3 class="text-xl font-bold benefit-card-header">Exclusive Opportunities</h3>
+                        <!-- ADDED CLASS -->
+
+                    </div>
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
+                        Access to premium, off-market real estate deals.
+
+                    </p>
+                </div>
+                <!-- Benefit card 2 -->
+
+                <div class="benefit-card p-8 rounded-2xl benefit-card-item"> <!-- ADDED CLASS -->
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div
+                            class="icon-wrapper h-12 w-12 rounded-full bg-gradient-to-br from-red-600 to-red-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M3.75 13.5l10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z" />
+                            </svg>
+
+
+                        </div>
+                        <h3 class="text-xl font-bold benefit-card-header">Project Updates</h3> <!-- ADDED CLASS -->
+
+                    </div>
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
+                        Stay informed with regular updates on project milestones and progress.
+
+                    </p>
+                </div>
+
+                <!-- Benefit card 3 -->
+
+                <div class="benefit-card p-8 rounded-2xl benefit-card-item"> <!-- ADDED CLASS -->
+                    <div class="flex items-center space-x-4 mb-6">
+                        <div
+                            class="icon-wrapper h-12 w-12 rounded-full bg-gradient-to-br from-red-600 to-red-600 flex items-center justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
+                                stroke="currentColor" class="w-6 h-6 text-white">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M16.5 10.5V6.75a4.5 4.5 0 1 0-9 0v3.75m-.75 11.25h10.5a2.25 2.25 0 0 0 2.25-2.25v-6.75a2.25 2.25 0 0 0-2.25-2.25H6.75a2.25 2.25 0 0 0-2.25 2.25v6.75a2.25 2.25 0 0 0 2.25 2.25Z" />
+                            </svg>
+
+
+                        </div>
+                        <h3 class="text-xl font-bold benefit-card-header">Additional Benefits</h3> <!-- ADDED CLASS -->
+
+                    </div>
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
+                        Enjoy priority access, exclusive resources, and personalised support to maximise investment
+                        success
+
+                    </p>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="/benefits" class="button-primary px-8 py-3 rounded-full inline-block">See The Benefits</a>
+            </div>
+
+        </div>
+
+    </section>
+
+    <!-- Collection Section (IKI.AI-inspired "Collected in IKI.AI") -->
+    <section id="collection-section" class="py-20 relative overflow-hidden bg-[#050505] section">
+        <div id="honeycomb-container-collection">
+            <canvas id="honeycomb-canvas-collection"></canvas>
+        </div>
+        <div class="honeycomb-overlay-collection"></div>
+        <!-- Decorative elements -->
+
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span
+                    class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">PORTFOLIO</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 collection-section-header"> <!-- ADDED CLASS -->
+                    <span class="gradient-text">Collected</span> in Home Futures
+                </h2>
+                <p class="text-xl text-gray-300 collection-section-subheader">Our portfolio of premium properties and
+                    investment opportunities
+                    curated for high returns.</p> <!-- ADDED CLASS -->
+            </div>
+
+            <div class="iki-grid">
+                <!-- Collection Card 1 -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
+                    <div class="h-full p-6 flex flex-col justify-between relative z-10">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-4">
+                                <div class="h-3 w-3 bg-green-400 rounded-full"></div>
+                                <span class="text-sm text-green-400">Active Project</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 collection-card-header">Coastal Villas</h3>
+                            <!-- ADDED CLASS -->
+                            <p class="text-gray-300 collection-card-subheader mb-4">Luxury beachfront properties with
+                                exceptional ROI projections.
+                            </p> <!-- ADDED CLASS -->
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-gray-400">Progress</span>
+                                <span class="text-sm text-white">75%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-gradient-to-r from-red-500 to-red-500 h-1.5 rounded-full"
+                                    style="width: 75%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="portfolio1.png" alt="Coastal Villas"
+                        class="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
+                </div>
+
+                <!-- Collection Card 2 -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
+                    <div class="h-full p-6 flex flex-col justify-between relative z-10">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-4">
+                                <div class="h-3 w-3 bg-blue-400 rounded-full"></div>
+                                <span class="text-sm text-blue-400">Upcoming</span>
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 collection-card-header">Urban Heights</h3>
+                            <!-- ADDED CLASS -->
+                            <p class="text-gray-300 collection-card-subheader mb-4">Modern apartments in thriving
+                                metropolitan centres.</p> <!-- ADDED CLASS -->
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-gray-400">Progress</span>
+                                <span class="text-sm text-white">40%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-gradient-to-r from-red-500 to-red-500 h-1.5 rounded-full"
+                                    style="width: 40%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="portfolio2.png" alt="Urban Heights"
+                        class="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
+                </div>
+
+                <!-- Collection Card 3 -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
+                    <div class="h-full p-6 flex flex-col justify-between relative z-10">
+                        <div>
+                            <div class="flex items-center space-x-2 mb-4">
+                                <div class="h-3 w-3 bg-purple-400 rounded-full"></div>
+                                <span class="text-sm text-purple-400">Hot Investment
+                            </div>
+                            <h3 class="text-2xl font-bold mb-2 collection-card-header">Suburban Estates</h3>
+                            <!-- ADDED CLASS -->
+                            <p class="text-gray-300 collection-card-subheader mb-4">Family homes in rapidly growing
+                                suburban areas with high
+                                appreciation potential.</p> <!-- ADDED CLASS -->
+                        </div>
+                        <div>
+                            <div class="flex items-center justify-between mb-4">
+                                <span class="text-sm text-gray-400">Progress</span>
+                                <span class="text-sm text-white">90%</span>
+                            </div>
+                            <div class="w-full bg-gray-700 rounded-full h-1.5">
+                                <div class="bg-gradient-to-r from-red-500 to-red-500 h-1.5 rounded-full"
+                                    style="width: 90%"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <img src="portfolio3.png" alt="Suburban Estates"
+                        class="absolute inset-0 w-full h-full object-cover opacity-30 z-0">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Extra Features Section (IKI.AI-inspired "Extra features that empower your knowledge flow") -->
+    <section id="extra-features" class="py-20 bg-[#060606] relative overflow-hidden section">
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+        <div id="honeycomb-container-extra-features">
+            <canvas id="honeycomb-canvas-extra-features"></canvas>
+        </div>
+        <div class="honeycomb-overlay-extra-features"></div>
+        <div class="container mx-auto px-4 py-16 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-20">
+                <span
+                    class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">HIGHLIGHTS</span>
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 extra-features-section-header"> <!-- ADDED CLASS -->
+                    <span class="gradient-text">Securing Your Tomorrow</span>, Today
+                </h2>
+                <p class="text-xl text-gray-300 extra-features-section-subheader">FOR THE BENEFIT OF MEMBERS</p>
+                <!-- ADDED CLASS -->
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Investment Principles Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <h2 class="text-3xl font-bold extra-features-card-header">Grounded in proven principles</h2>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">The Oroshiuri System applies fundamental
+                        investment concepts,
+                        including
+                        compounding, leverage, and growth exposure.</p> <!-- ADDED CLASS -->
+                    <div class="mt-4 invisible">Spacer</div>
+                </div>
+
+                <!-- Quick Completion Card -->
+                <div class="feature-card p-10 row-span-2 md:col-span-1 lg:col-span-1 extra-features-card-item">
+                    <!-- ADDED CLASS -->
+                    <div class="flex flex-col h-full justify-between">
+                        <div>
+                            <h2 class="text-3xl font-bold extra-features-card-header">Quick completion of brand-new
+                                estates</h2> <!-- ADDED CLASS -->
+                            <p class="mt-2 text-gray-400 extra-features-card-subheader">Creating the right conditions
+                                within high-potential markets to
+                                stimulate rapid appreciation.</p> <!-- ADDED CLASS -->
+
+                            <div class="mt-8 bg-gray-900 p-4 rounded-lg">
+                                <div class="flex items-center mb-2">
+                                    <div class="h-3 w-3 rounded-full bg-green-500 mr-2"></div>
+                                    <span class="text-xs text-gray-400">Property completed</span>
+                                </div>
+
+                                <div class="bg-gray-800 rounded-lg p-3 flex items-start">
+                                    <div class="flex-shrink-0 mr-3">
+                                        <div class="h-16 w-16 rounded bg-red-500 flex items-center justify-center">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white "
+                                                viewBox="0 0 20 20" fill="currentColor">
+                                                <path fill-rule="evenodd"
+                                                    d="M4 5a2 2 0 012-2h8a2 2 0 012 2v10a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm9 1a1 1 0 10-2 0v6.5l-1.146-1.146a1 1 0 10-1.415 1.415l3 3a1 1 0 001.415 0l3-3a1 1 0 10-1.415-1.415L13 12.5V6z"
+                                                    clip-rule="evenodd" />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs text-white font-medium">Oroshiuri Waterfront Estate: Phase 2
+                                            Complete</p>
+                                        <div class="flex items-center mt-1">
+                                            <span class="text-xs text-gray-400">Premium location • Ready for
+                                                occupancy</span>
+                                        </div>
+                                        <div class="flex items-center mt-3">
+                                            <div class="bg-black rounded-full px-3 py-1 text-xs text-white mr-2">
+                                                <span>Home Futures</span>
+                                            </div>
+                                            <span class="text-xs text-gray-400">2M ago</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="flex mt-4">
+                                    <button
+                                        class="bg-gray-800 text-gray-300 text-xs rounded-lg px-3 py-2 mr-2">Updates</button>
+                                    <button
+                                        class="bg-gray-800 text-gray-300 text-xs rounded-lg px-3 py-2 mr-2">Invest</button>
+                                    <button class="bg-gray-800 text-gray-300 text-xs rounded-lg px-3 py-2">+</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <a href="/portfolio" class="download-btn mt-8 w-48 text-center block">LEARN MORE</a>
+                    </div>
+                </div>
+
+                <!-- AI Technology Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <h3 class="text-2xl font-semibold extra-features-card-header">Artificial Intelligence at work</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Enhancing efficiency and decision-making
+                        through automated data
+                        analysis.
+                    </p> <!-- ADDED CLASS -->
+                    <div class="flex items-center mt-4">
+                        <span class="text-xl font-bold mr-2">124</span>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M18 10c0 3.866-3.582 7-8 7a8.841 8.841 0 01-4.083-0.98L2 17l1.338-3.123C2.493 12.767 2 11.434 2 10c0-3.866 3.582-7 8-7s8 3.134 8 7zM7 9H5v2h2V9zm8 0h-2v2h2V9zm9 9h2v2H9V9z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                    <div class="grid grid-cols-3 gap-2 mt-4">
+                        <div class="rounded-lg bg-red-500 h-14"></div>
+                        <div class="rounded-lg bg-blue-500 h-14"></div>
+                        <div class="rounded-lg bg-gray-500 h-14"></div>
+                    </div>
+                </div>
+
+                <!-- Structured Process Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <div class="space-y-2 mb-4">
+                        <div class="h-2 bg-gray-700 rounded w-3/4"></div>
+                        <div class="h-2 bg-gray-700 rounded"></div>
+                        <div class="h-2 bg-gray-700 rounded w-5/6"></div>
+                    </div>
+
+                    <div
+                        class="h-32 bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 rounded-lg flex items-center justify-center">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 text-white" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path
+                                d="M9 4.804A7.968 7.968 0 005.5 4c-1.255 0-2.443.29-3.5.804v10A7.969 7.969 0 015.5 14c1.669 0 3.218.51 4.5 1.385A7.962 7.962 0 0114.5 14c1.255 0 2.443.29 3.5.804v-10A7.968 7.968 0 0014.5 4c-1.255 0-2.443.29-3.5.804V12a1 1 0 11-2 0V4.804z" />
+                        </svg>
+                    </div>
+
+                    <div class="space-y-2 mt-4">
+                        <div class="h-2 bg-gray-700 rounded"></div>
+                        <div class="h-2 bg-gray-700 rounded w-5/6"></div>
+                        <div class="h-2 bg-gray-700 rounded w-4/6"></div>
+                    </div>
+
+                    <h3 class="text-2xl font-semibold extra-features-card-header mt-4">Structured process</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">A systematic approach reducing
+                        uncertainty and facilitating efficient
+                        scaling.</p> <!-- ADDED CLASS -->
+                </div>
+
+                <!-- Efficient Collaboration Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <h2 class="text-3xl font-bold extra-features-card-header">Efficient collaboration</h2>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Fostering effective relationships
+                        between all stakeholders.</p> <!-- ADDED CLASS -->
+
+                    <div class="mt-6 flex flex-col items-end">
+                        <button id="gpt4" class="model-btn active mb-2 w-28 text-center">Builders</button>
+                        <button id="mixtral" class="model-btn mb-2 w-28 text-center">Investors</button>
+                        <button id="claude" class="model-btn w-28 text-center">Providers</button>
+                    </div>
+                </div>
+
+                <!-- Tailored to Investors Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <h3 class="text-2xl font-semibold extra-features-card-header">Tailored to investors</h3>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Adapts to individual investor profiles,
+                        goals, and risk tolerance.</p> <!-- ADDED CLASS -->
+
+                    <div class="mt-6 flex justify-center">
+                        <label class="toggle-switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Home Futures Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <div class="flex justify-between items-center h-full">
+                        <div>
+                            <h3 class="text-2xl font-semibold extra-features-card-header">Home<br>Futures</h3>
+                            <!-- ADDED CLASS -->
+                            <p class="mt-2 text-gray-400 extra-features-card-subheader">A fresh approach to real estate.
+                            </p> <!-- ADDED CLASS -->
+                        </div>
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20"
+                            fill="currentColor">
+                            <path fill-rule="evenodd"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </div>
+                </div>
+
+                <!-- Membership Benefits Card -->
+                <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
+                    <h2 class="text-3xl font-bold extra-features-card-header">Membership benefits</h2>
+                    <!-- ADDED CLASS -->
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Our collective advantage</p>
+                    <!-- ADDED CLASS -->
+                    <ul class="mt-4 text-gray-300 extra-features-card-subheader"> <!-- ADDED CLASS -->
+                        <li class="flex items-center mb-2">
+                            <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+                            Exclusive Opportunities
+                        </li>
+                        <li class="flex items-center mb-2">
+                            <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+                            Project Updates
+                        </li>
+                        <li class="flex items-center">
+                            <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
+                            Additional Benefits
+                        </li>
+                    </ul>
+                    <a href="/benefits" class="download-btn mt-6 text-center block">SEE THE BENEFITS</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Phone App Section with Image Carousel -->
+    <section id="phone-app-section" class="py-20 bg-[#060606] relative overflow-hidden section">
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+        <div id="honeycomb-container-app">
+            <canvas id="honeycomb-canvas-app"></canvas>
+        </div>
+        <div class="honeycomb-overlay-app"></div>
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="flex flex-col md:flex-row items-center justify-center gap-12">
+
+                <div class="md:w-1/2 text-left md:text-left">
+                    <div class="text-center md:text-left max-w-xl mb-12 md:mb-0">
+                        <!-- Adjusted max-w for text content -->
+                        <span
+                            class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">MOBILE
+                            APP</span>
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 phone-app-section-header"> <!-- ADDED CLASS -->
+                            Unlock the Future of Home Development,<span class="gradient-text"> On-the-Go</span>
+                        </h2>
+                        <p class="text-xl text-gray-300 phone-app-section-subheader">
+                            <!-- ADDED CLASS -->
+                            Manage your projects, track investments, and stay connected with Home Futures, all from our
+                            intuitive mobile app.
+                        </p>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-6 phone-app-features-header mt-4">Key Features at Your Fingertips
+                    </h3>
+                    <!-- ADDED CLASS -->
+                    <ul class="space-y-4 mb-8 phone-app-features-list">
+                        <!-- ADDED CLASS -->
+                        <li class="flex items-start">
+                            <div class="mr-2 text-red-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">Real-time project tracking and updates.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mr-2 text-red-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">Secure investment portfolio management.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mr-2 text-red-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">Direct communication with project teams.</p>
+                        </li>
+                        <li class="flex items-start">
+                            <div class="mr-2 text-red-400">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                    stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                                </svg>
+                            </div>
+                            <p class="text-gray-300">Personalised alerts and notifications.</p>
+                        </li>
+                    </ul>
+                    <div class="flex gap-4 justify-start">
+                        <a href="#" class="button-secondary px-6 py-3 rounded-full font-medium">
+                            <!-- Google Play button -->
+                            <svg class="w-5 h-5 mr-2 inline-block" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 512 512">
+                                <path fill="currentColor"
+                                    d="M48 59.49v393a4.33 4.33 0 007.37 3.07L260 256 55.37 56.42A4.33 4.33 0 0048 59.49zM345.8 174L89.22 32.64l-.16-.09c-4.42-2.4-8.62 3.58-5 7.06l201.13 192.32zM84.08 472.39c-3.64 3.48.56 9.46 5 7.06l.16-.09L345.8 338l-60.61-57.95zM449.38 231l-71.65-39.46L310.36 256l67.37 64.43L449.38 281c19.49-10.77 19.49-39.23 0-50z" />
+                            </svg>
+                            Google Play
+                        </a>
+
+                        <a href="#" class="button-primary px-6 py-3 rounded-full font-medium">
+                            <!-- App Store button -->
+                            <svg class="w-5 h-5 mr-2 inline-block" xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 384 512">
+                                <path fill="currentColor"
+                                    d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 4 184.8 4 273.5q0 39.3 14.4 81.2c12.8 36.7 59 126.7 107.2 125.2 25.2-.6 43-17.9 75.8-17.9 31.8 0 48.3 17.9 76.4 17.9 48.6-.7 90.4-82.5 102.6-119.3-65.2-30.7-61.7-90-61.7-91.9zm-56.6-164.2c27.3-32.4 24.8-61.9 24-72.5-24.1 1.4-52 16.4-67.9 34.9-17.5 19.8-27.8 44.3-25.6 71.9 26.1 2 49.9-11.4 69.5-34.3z" />
+                            </svg>
+                            App Store
+                        </a>
+                    </div>
+                </div>
+
+                <div class="md:w-1/2">
+                    <div class="overflow-hidden"> <!-- Fixed height -->
+                        <img src="phone3.jpg" alt="Phone App Interface" id="app-screenshot"
+                            class="w-full h-full object-contain transition-opacity duration-500" style="opacity: 1;" />
+                        <!-- Placeholder image - will be changed by JS -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+
+
+            // --- Image Carousel ---
+            const appScreenshot = document.getElementById('app-screenshot');
+            const appImages = [
+                "phone1.jpg",  // Replace with your actual image paths
+                "phone2.jpg",
+                "phone.jpg",
+                "phone4.jpg",
+                "phone5.jpg",
+                // Add more image paths as needed
+            ];
+            let currentImageIndex = 0;
+
+            function changeAppImage() {
+                currentImageIndex = (currentImageIndex + 1) % appImages.length;
+                appScreenshot.style.opacity = 0; // Fade out current image
+                setTimeout(() => {
+                    appScreenshot.src = appImages[currentImageIndex];
+                    appScreenshot.style.opacity = 1; // Fade in new image
+                }, 500); // Match the transition duration
+            }
+
+            setInterval(changeAppImage, 3000); // Change image every 3 seconds
+
+            // ... (Rest of your existing scripts - Honeycomb init, etc.) ...
+        });
+    </script>
+
+
+
+
+    <section id="community" class="py-20 relative overflow-hidden bg-[#050505] section">
+        <!-- Decorative elements -->
+        <div class="glow-effect absolute top-0 left-1/3 -translate-x-1/2"></div>
+        <div id="honeycomb-container-community">
+            <canvas id="honeycomb-canvas-community"></canvas>
+        </div>
+        <div class="honeycomb-overlay-community"></div>
+        <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
+            <span
+                class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">INSIGHTS</span>
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 community-section-header"> <!-- ADDED CLASS -->
+                <span class="gradient-text">Explore Our</span> Expertise
+            </h2>
+            <p class="text-xl text-gray-300 community-section-subheader">Learn about AI-driven solutions and business
+                transformation.</p>
+            <!-- ADDED CLASS -->
+        </div>
+        <div class="max-w-6xl mx-auto relative z-10">
+
+            <!-- Central Banner -->
+            <div class="central-banner absolute lg:block hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-8 px-12 text-center"
+                style="width: 300px;">
+                <div class="moving-gradient"></div>
+                <h2 class="text-4xl font-bold mb-6 community-banner-header">Deep Dive into<br>AI Solutions</h2>
+                <!-- ADDED CLASS -->
+
+                <a href="/contact" class="btn-primary">Book a consultation</a>
+            </div>
+
+            <!-- Grid Layout -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community1.jpeg" alt="AI in Retail" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">AI-Powered Retail Optimization</h3>
+                        <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Retail</span>
+                            <span class="tag">AI Solutions</span>
+                            <span class="tag">Optimization</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>5 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Systems
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community2.png" alt="Manufacturing Automation" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">Streamlining Manufacturing with AI</h3>
+                        <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Manufacturing</span>
+                            <span class="tag">Automation</span>
+                            <span class="tag">Efficiency</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>8 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Systems Team
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community3.jpeg" alt="Supply Chain Analytics" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">Data-Driven Logistics & Supply Chain
+                        </h3>
+                        <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Logistics</span>
+                            <span class="tag">Supply Chain</span>
+                            <span class="tag">Data Analytics</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>12 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Experts
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 4 -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community4.png" alt="Business Transformation" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">Transforming Businesses with AI</h3>
+                        <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Transformation</span>
+                            <span class="tag">Strategy</span>
+                            <span class="tag">AI Consulting</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>7 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Systems
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 5 - Repeat of Retail -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community5.png" alt="Customer Experience AI" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">Enhancing Customer Experience with AI
+                        </h3>
+                        <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Customer Service</span>
+                            <span class="tag">AI</span>
+                            <span class="tag">Engagement</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>6 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Team
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Card 6 - Repeat of Supply Chain -->
+                <div class="collection-card community-card-item"> <!-- ADDED CLASS -->
+                    <div class="overflow-hidden">
+                        <img src="community6.jpeg" alt="Predictive Logistics" class="card-image" />
+                    </div>
+                    <div class="p-4">
+                        <h3 class="text-xl font-bold mb-3 community-card-header">Predictive Analytics for Smarter
+                            Logistics
+                        </h3> <!-- ADDED CLASS -->
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tag">Predictive</span>
+                            <span class="tag">Logistics</span>
+                            <span class="tag">Analytics</span>
+                        </div>
+                        <div class="flex justify-between items-center text-xs text-gray-500">
+                            <span>9 Articles</span>
+                            <span class="flex items-center gap-1">
+                                Oroshiuri Experts
+                                <span class="w-4 h-4 bg-gray-700 rounded-full inline-block"></span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+    <!-- Call to action section -->
+
+    <section id="cta-section" class="py-24 bg-gradient-to-br from-red-800 to-red-700 relative section">
+        <div id="honeycomb-container-cta">
+            <canvas id="honeycomb-canvas-cta"></canvas>
+        </div>
+        <div class="honeycomb-overlay-cta"></div>
+        <!-- Decorative blobs -->
+        <div class="blob bg-white/10" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
+        <div class="blob bg-white/10" style="width: 500px; height: 500px; bottom: -150px; right: -100px;"></div>
+        <div class="container mx-auto px-4 text-center relative z-10">
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 cta-section-header"> <!-- ADDED CLASS -->
+                Ready to Secure Your Future Property?
+            </h2>
+            <p class="text-xl text-white/80 mb-12 max-w-3xl mx-auto cta-section-subheader"> <!-- ADDED CLASS -->
+
+                Join Home Futures and start benefiting from monthly payments towards your future property at today's
+                prices.
+            </p>
+            <a href="/get-started"
+                class="button-primary px-8 py-4 rounded-full text-lg font-medium inline-block bg-white text-gray-900 hover:bg-gray-100">
+                Get Started Today
+
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-black/80 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-6 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
+                <!-- Logo & Description -->
+                <div>
+                    <div class="w-36 mb-5">
+                        <img src="oroshiuri-web-logo.png" alt="Oroshiuri" class="w-full h-auto rounded-lg">
+                    </div>
+                    <p class="text-gray-400 leading-relaxed">
+                        Smarter Development. Better Homes. Revolutionising real estate investment for a brighter future.
+                    </p>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/" class="text-gray-400 hover:text-red-600 transition">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-red-600 transition">About</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-red-600 transition">Contact</a></li>
+                        <li><a href="/insights" class="text-gray-400 hover:text-red-600 transition">Insights</a></li>
+                    </ul>
+                </div>
+
+                <!-- Member Benefits -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Member Benefits</h4>
+                    <ul class="space-y-3">
+                        <li><a href="/benefits" class="text-gray-400 hover:text-red-600 transition">Benefits for
+                                Members</a></li>
+                        <li><a href="/affiliate" class="text-gray-400 hover:text-red-600 transition">Become an
+                                Affiliate</a></li>
+                        <li><a href="/login" class="text-gray-400 hover:text-red-600 transition">Login</a></li>
+                        <li><a href="/futures" class="text-gray-400 hover:text-red-600 transition">Futures</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info & Newsletter -->
+                <div>
+                    <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
+                    <p class="text-gray-400 mb-2">Unit 3 / 10 Vine Street, Clayfield, 4011, Australia</p>
+                    <p class="text-gray-400 mb-4">
+                        <a href="mailto:support@oroshiuri.com.au" class="hover:text-red-600 transition">
+                            support@oroshiuri.com.au
+                        </a>
+                    </p>
+
+                    <h4 class="text-lg font-semibold text-white mb-3">Newsletter</h4>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email"
+                            class="w-full bg-black/50 border border-gray-700 rounded-l-lg py-2 px-4 focus:border-yellow-400 transition">
+                        <button class="bg-red-600 px-5 rounded-r-lg text-black hover:bg-yellow-500 transition">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer Bottom -->
+            <div class="border-t border-gray-800 pt-6 flex flex-col md:flex-row justify-between items-center">
+                <p class="text-gray-400 text-sm text-center md:text-left">
+                    © 2025 Oroshiuri Systems Pty Ltd ACN 642 601 910 – All Rights Reserved
+                </p>
+                <div class="flex space-x-6 text-sm mt-4 md:mt-0">
+                    <a href="#" class="text-gray-400 hover:text-red-600 transition">Privacy Policy</a>
+                    <a href="#" class="text-gray-400 hover:text-red-600 transition">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+
+        gsap.timeline()
+            .from(".hero-title", { opacity: 0, y: 20, duration: 0.8, ease: "power2.out" })
+            .from(".hero-desc", { opacity: 0, y: 30, duration: 0.9, ease: "power2.out" }, "-=0.5")
+            .from(".hero-buttons", { opacity: 0, y: 40, duration: 1, ease: "power2.out" }, "-=0.6")
+            .from(".hero-card-3d", { opacity: 0, y: 50, scale: 0.9, duration: 1.2, ease: "power2.out" }, "-=0.8");
+
+        // GSAP Animations
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Corrected Feature section animation
+        gsap.to(".feature-item", {
+            scrollTrigger: {
+                trigger: ".feature-item",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Corrected Benefit section animation
+        gsap.to(".benefit-card-item", { // UPDATED SELECTOR
+            scrollTrigger: {
+                trigger: ".benefit-card",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Collection section animation
+        gsap.to(".collection-card-item", { // UPDATED SELECTOR
+            scrollTrigger: {
+                trigger: ".collection-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Feature Section Header Animations
+        gsap.from(".video-section-header", {
+            scrollTrigger: {
+                trigger: "#video",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        // Feature Section Header Animations
+        gsap.from(".video-section-subheader", {
+            scrollTrigger: {
+                trigger: "#video",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        // Feature Section Header Animations
+        gsap.from(".video", {
+            scrollTrigger: {
+                trigger: "#video",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+
+        // Extra Features section card animation
+        gsap.to(".extra-features-card-item", { // UPDATED SELECTOR
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Community section card animation
+        gsap.to(".community-card-item", { // UPDATED SELECTOR
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Phone App Section Animations
+        gsap.from(".phone-app-section-header", {
+            scrollTrigger: {
+                trigger: "#phone-app-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".phone-app-section-subheader", {
+            scrollTrigger: {
+                trigger: "#phone-app-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".phone-app-features-header", {
+            scrollTrigger: {
+                trigger: "#phone-app-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+        });
+        gsap.from(".phone-app-features-list li", {
+            scrollTrigger: {
+                trigger: "#phone-app-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1,
+            delay: 0.2
+        });
+        gsap.from("#app-screenshot", {
+            scrollTrigger: {
+                trigger: "#phone-app-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            x: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
+            delay: 0.4
+        });
+
+
+        // Feature Section Header Animations
+        gsap.from(".feature-section-header", {
+            scrollTrigger: {
+                trigger: "#honeycomb-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".feature-section-subheader", {
+            scrollTrigger: {
+                trigger: "#honeycomb-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".feature-card-header", {
+            scrollTrigger: {
+                trigger: "#honeycomb-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+        gsap.from(".feature-card-subheader", {
+            scrollTrigger: {
+                trigger: "#honeycomb-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+            delay: 0.1
+        });
+
+
+
+        // Benefit Section Header Animations
+        gsap.from(".benefit-section-header", {
+            scrollTrigger: {
+                trigger: "#benefit-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".benefit-section-subheader", {
+            scrollTrigger: {
+                trigger: "#benefit-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".benefit-card-header", {
+            scrollTrigger: {
+                trigger: "#benefit-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+        gsap.from(".benefit-card-subheader", {
+            scrollTrigger: {
+                trigger: "#benefit-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+            delay: 0.1
+        });
+
+
+        // Collection Section Header Animations
+        gsap.from(".collection-section-header", {
+            scrollTrigger: {
+                trigger: "#collection-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".collection-section-subheader", {
+            scrollTrigger: {
+                trigger: "#collection-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".collection-card-header", {
+            scrollTrigger: {
+                trigger: "#collection-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+        gsap.from(".collection-card-subheader", {
+            scrollTrigger: {
+                trigger: "#collection-section",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+            delay: 0.1
+        });
+
+        // Extra Features Section Header Animations
+        gsap.from(".extra-features-section-header", {
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".extra-features-section-subheader", {
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".extra-features-card-header", {
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+        gsap.from(".extra-features-card-subheader", {
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+            delay: 0.1
+        });
+
+        gsap.to(".extra-features-card-item", { // UPDATED SELECTOR
+            scrollTrigger: {
+                trigger: "#extra-features",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 0,
+            opacity: 1,
+            duration: 0.6,
+            stagger: 0.2
+        });
+
+        // Community Section Header Animations
+        gsap.from(".community-section-header", {
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".community-section-subheader", {
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".community-card-header", {
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2
+        });
+        gsap.from(".community-card-subheader", {
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.2,
+            delay: 0.1
+        });
+        gsap.from(".community-banner-header", {
+            scrollTrigger: {
+                trigger: "#community",
+                start: "top 80%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+        });
+
+
+        // CTA Section Header Animations
+        gsap.from(".cta-section-header", {
+            scrollTrigger: {
+                trigger: "#cta-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".cta-section-subheader", {
+            scrollTrigger: {
+                trigger: "#cta-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+
+        // Footer Section Header Animations
+        gsap.from(".footer-section-header", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out"
+        });
+        gsap.from(".footer-section-subheader", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 50,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power3.out",
+            delay: 0.2
+        });
+        gsap.from(".footer-links-header", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1
+        });
+        gsap.from(".footer-links-subheader", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1,
+            delay: 0.05
+        });
+        gsap.from(".footer-contact-header", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1
+        });
+        gsap.from(".footer-contact-subheader", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+            stagger: 0.1,
+            delay: 0.05
+        });
+        gsap.from(".footer-copyright-subheader", {
+            scrollTrigger: {
+                trigger: "#footer-section",
+                start: "top 90%",
+                toggleActions: "play none none none"
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.6,
+            ease: "power2.out",
+        });
+
+
+    </script>
+
+    <script>
+        const textOptions = [
+            "Innovation",
+            "Intelligence",
+            "Automation",
+            "Connection",
+            "Simplicity",
+            "Efficiency",
+            "Tomorrow",
+            "Progress"
+        ];
+
+        const container = document.getElementById('text-container');
+        let currentIndex = 0;
+        let nextIndex = 1;
+        let colorPattern = ["white", "red", "white", "white", "red"]; // Define the color pattern
+
+        // Create initial text elements
+        function createTextElement(text, className, color) {
+            const wrapper = document.createElement('div');
+            wrapper.className = `text-wrapper ${className}`;
+
+            const textElement = document.createElement('div');
+            textElement.className = 'text';
+            textElement.textContent = text;
+            textElement.style.color = color; // Set the color dynamically
+
+            wrapper.appendChild(textElement);
+            return wrapper;
+        }
+
+        // Initialize with first text
+        container.appendChild(createTextElement(textOptions[currentIndex], 'active', colorPattern[0]));
+
+        function animateText() {
+            // Get current active element
+            const currentElement = document.querySelector('.text-wrapper.active');
+
+            // Start exit animation
+            currentElement.classList.remove('active');
+            currentElement.classList.add('exiting');
+
+            // Prepare next text
+            nextIndex = (currentIndex + 1) % textOptions.length;
+            const colorIndex = nextIndex % colorPattern.length; // Cycle through color pattern
+            const nextElement = createTextElement(textOptions[nextIndex], '', colorPattern[colorIndex]);
+            container.appendChild(nextElement);
+
+            // Force reflow
+            void nextElement.offsetWidth;
+
+            // Add active class to trigger entrance animation
+            setTimeout(() => {
+                nextElement.classList.add('active');
+            }, 50);
+
+            // Remove old element after animation completes
+            setTimeout(() => {
+                if (currentElement.parentNode) {
+                    currentElement.parentNode.removeChild(currentElement);
+                }
+            }, 800);
+
+            // Update current index
+            currentIndex = nextIndex;
+        }
+
+        // Change text every 2 seconds
+        setInterval(animateText, 2000);
+
+    </script>
+
+    <script>
+        // Wait for window to load completely
+        window.addEventListener('load', function () {
+            // Check if the element exists
+            const container = document.getElementById('particles-js');
+            if (!container) {
+                console.error('Could not find particles-js element');
+                return;
+            }
+
+            // Get container dimensions
+            const width = container.offsetWidth;
+            const height = container.offsetHeight;
+
+            // Basic Three.js setup
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
+            camera.position.z = 5;
+
+            // Create renderer with transparency
+            const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
+            renderer.setSize(width, height);
+            renderer.setClearColor(0x000000, 0); // transparent background
+            container.appendChild(renderer.domElement);
+
+            // Simple particles
+            const particleCount = 2000;
+            const particles = new THREE.BufferGeometry();
+            const positions = new Float32Array(particleCount * 3);
+
+            for (let i = 0; i < particleCount * 3; i += 3) {
+                positions[i] = (Math.random() - 0.5) * 10;
+                positions[i + 1] = (Math.random() - 0.5) * 10;
+                positions[i + 2] = (Math.random() - 0.5) * 10;
+            }
+
+            particles.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+
+
+            // Load circular texture
+            const particleTexture = new THREE.TextureLoader().load('https://threejs.org/examples/textures/sprites/circle.png');
+
+            const material = new THREE.PointsMaterial({
+                map: particleTexture, // Apply circular texture
+                color: 0xff0000,
+                size: 0.1,
+                transparent: true,
+                depthTest: false,
+                blending: THREE.AdditiveBlending
+            });
+
+            // Create the particle system
+            const particleSystem = new THREE.Points(particles, material);
+            scene.add(particleSystem);
+
+            // Animation loop
+            function animate() {
+                requestAnimationFrame(animate);
+
+                particleSystem.rotation.x += 0.001;
+                particleSystem.rotation.y += 0.002;
+
+                renderer.render(scene, camera);
+            }
+
+            // Handle window resize
+            window.addEventListener('resize', function () {
+                const newWidth = container.offsetWidth;
+                const newHeight = container.offsetHeight;
+
+                camera.aspect = newWidth / newHeight;
+                camera.updateProjectionMatrix();
+
+                renderer.setSize(newWidth, newHeight);
+            });
+
+            // Start animation
+            animate();
+
+            console.log('Particle animation initialized');
+        });
+    </script>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const canvas = document.getElementById('honeycomb-canvas');
+            const ctx = canvas.getContext('2d');
+            const canvasCollection = document.getElementById('honeycomb-canvas-collection');
+            const ctxCollection = canvasCollection.getContext('2d');
+            const canvasBenefit = document.getElementById('honeycomb-canvas-benefit');
+            const ctxBenefit = canvasBenefit.getContext('2d');
+            const canvasCta = document.getElementById('honeycomb-canvas-cta');
+            const ctxCta = canvasCta.getContext('2d');
+            const canvasFooter = document.getElementById('honeycomb-canvas-footer');
+            const ctxFooter = canvasFooter.getContext('2d');
+            const canvasExtraFeatures = document.getElementById('honeycomb-canvas-extra-features'); /* ADDED */
+            const ctxExtraFeatures = canvasExtraFeatures.getContext('2d'); /* ADDED */
+            const canvasCommunity = document.getElementById('honeycomb-canvas-community'); /* ADDED */
+            const ctxCommunity = canvasCommunity.getContext('2d'); /* ADDED */
+            const canvasApp = document.getElementById('honeycomb-canvas-app'); /* ADDED */
+            const ctxApp = canvasApp.getContext('2d'); /* ADDED */
+
+
+            function resizeCanvas() {
+                canvas.width = document.getElementById('honeycomb-container').offsetWidth;
+                canvas.height = document.getElementById('honeycomb-container').offsetHeight;
+                canvasCollection.width = document.getElementById('honeycomb-container-collection').offsetWidth;
+                canvasCollection.height = document.getElementById('honeycomb-container-collection').offsetHeight;
+                canvasBenefit.width = document.getElementById('honeycomb-container-benefit').offsetWidth;
+                canvasBenefit.height = document.getElementById('honeycomb-container-benefit').offsetHeight;
+                canvasCta.width = document.getElementById('honeycomb-container-cta').offsetWidth;
+                canvasCta.height = document.getElementById('honeycomb-container-cta').offsetHeight;
+                canvasFooter.width = document.getElementById('honeycomb-container-footer').offsetWidth;
+                canvasFooter.height = document.getElementById('honeycomb-container-footer').offsetHeight;
+                canvasExtraFeatures.width = document.getElementById('honeycomb-container-extra-features').offsetWidth; /* ADDED */
+                canvasExtraFeatures.height = document.getElementById('honeycomb-container-extra-features').offsetHeight; /* ADDED */
+                canvasCommunity.width = document.getElementById('honeycomb-container-community').offsetWidth; /* ADDED */
+                canvasCommunity.height = document.getElementById('honeycomb-container-community').offsetHeight; /* ADDED */
+                canvasApp.width = document.getElementById('honeycomb-container-app').offsetWidth; /* ADDED */
+                canvasApp.height = document.getElementById('honeycomb-container-app').offsetHeight; /* ADDED */
+            }
+
+            resizeCanvas();
+            window.addEventListener('resize', resizeCanvas);
+
+            const hexSize = 40;
+            const hexHeight = hexSize * Math.sqrt(3);
+            const columns = Math.ceil(canvas.width / (hexSize * 1.5)) + 1;
+            const rows = Math.ceil(canvas.height / hexHeight) + 1;
+
+            const edges = [];
+            const edgesCollection = [];
+            const edgesBenefit = [];
+            const edgesCta = [];
+            const edgesFooter = [];
+            const edgesExtraFeatures = []; /* ADDED */
+            const edgesCommunity = []; /* ADDED */
+            const edgesApp = []; /* ADDED */
+
+
+            function generateGrid(current_canvas, current_edges) {
+                const columns_current = Math.ceil(current_canvas.width / (hexSize * 1.5)) + 1;
+                const rows_current = Math.ceil(current_canvas.height / hexHeight) + 1;
+                const grid = [];
+
+                for (let row = 0; row < rows_current; row++) {
+                    for (let col = 0; col < columns_current; col++) {
+                        const offset = row % 2 === 0 ? 0 : hexSize * 1.5;
+                        const x = col * hexSize * 3 + offset;
+                        const y = row * hexHeight;
+
+                        const points = [];
+                        for (let i = 0; i < 6; i++) {
+                            const angle = (Math.PI / 3) * i;
+                            points.push({
+                                x: x + hexSize * Math.cos(angle),
+                                y: y + hexSize * Math.sin(angle)
+                            });
+                        }
+
+                        grid.push({ center: { x, y }, points });
+
+                        for (let i = 0; i < 6; i++) {
+                            const nextI = (i + 1) % 6;
+                            const edge = {
+                                start: points[i],
+                                end: points[nextI],
+                                length: Math.hypot(points[nextI].x - points[i].x, points[nextI].y - points[i].y)
+                            };
+                            current_edges.push(edge);
+                        }
+                    }
+                }
+
+
+            }
+
+
+            generateGrid(canvas, edges);
+            generateGrid(canvasCollection, edgesCollection);
+            generateGrid(canvasBenefit, edgesBenefit);
+            generateGrid(canvasCta, edgesCta);
+            generateGrid(canvasFooter, edgesFooter);
+            generateGrid(canvasExtraFeatures, edgesExtraFeatures); /* ADDED */
+            generateGrid(canvasCommunity, edgesCommunity); /* ADDED */
+            generateGrid(canvasApp, edgesApp); /* ADDED */
+
+
+            const paths = [];
+            const pathsCollection = [];
+            const pathsBenefit = [];
+            const pathsCta = [];
+            const pathsFooter = [];
+            const pathsExtraFeatures = []; /* ADDED */
+            const pathsCommunity = []; /* ADDED */
+            const pathsApp = []; /* ADDED */
+
+
+            const totalPaths = 5; // Fewer paths for a subtle effect
+            const baseSpeed = 0.001; // Slow movement
+
+
+            function generatePaths(current_edges, current_paths) {
+                for (let i = 0; i < totalPaths; i++) {
+                    const length = 100 + Math.floor(Math.random() * 100);
+                    const speed = baseSpeed * (0.8 + Math.random() * 0.4);
+                    const intensity = 0.2 + Math.random() * 0.3;
+
+                    const startEdgeIndex = Math.floor(Math.random() * current_edges.length);
+                    current_paths.push({
+                        position: 0,
+                        length,
+                        speed,
+                        intensity,
+                        color: `rgba(255, ${50 + Math.floor(Math.random() * 100)}, 50, ${intensity})`,
+                        segments: [{ edgeIndex: startEdgeIndex, position: 0 }]
+                    });
+                }
+
+            }
+
+
+            generatePaths(edges, paths);
+            generatePaths(edgesCollection, pathsCollection);
+            generatePaths(edgesBenefit, pathsBenefit);
+            generatePaths(edgesCta, pathsCta);
+            generatePaths(edgesFooter, pathsFooter);
+            generatePaths(edgesExtraFeatures, pathsExtraFeatures); /* ADDED */
+            generatePaths(edgesCommunity, pathsCommunity); /* ADDED */
+            generatePaths(edgesApp, pathsApp); /* ADDED */
+
+
+
+            function drawHoneycombOutline(current_ctx, current_edges) {
+                current_ctx.strokeStyle = 'rgba(255, 50, 50, 0.1)';
+                current_ctx.lineWidth = 1;
+
+                current_edges.forEach(edge => {
+                    current_ctx.beginPath();
+                    current_ctx.moveTo(edge.start.x, edge.start.y);
+                    current_ctx.lineTo(edge.end.x, edge.end.y);
+                    current_ctx.stroke();
+                });
+            }
+
+            function drawLights(current_ctx, current_edges, current_paths) {
+                current_paths.forEach(path => {
+                    path.position += path.speed;
+                    if (path.position > 1) {
+                        path.position = 0;
+                        path.segments = [{ edgeIndex: Math.floor(Math.random() * current_edges.length), position: 0 }];
+                    }
+
+                    path.segments = [];
+                    let remainingLength = path.length;
+                    let currentEdgeIndex = Math.floor(Math.random() * current_edges.length);
+                    let currentPos = path.position;
+
+                    while (remainingLength > 0) {
+                        const edge = current_edges[currentEdgeIndex];
+                        path.segments.push({ edgeIndex: currentEdgeIndex, position: currentPos });
+
+                        remainingLength -= edge.length * (1 - currentPos);
+                        currentPos = 0;
+                        currentEdgeIndex = (currentEdgeIndex + 1) % current_edges.length;
+                    }
+
+                    path.segments.forEach((segment, index) => {
+                        const edge = current_edges[segment.edgeIndex];
+                        const startX = edge.start.x + (edge.end.x - edge.start.x) * segment.position;
+                        const startY = edge.start.y + (edge.end.y - edge.start.y) * segment.position;
+
+                        const alpha = Math.sin((path.position + index * 0.1) * Math.PI); // Smooth fade in/out effect
+
+                        current_ctx.beginPath();
+                        current_ctx.strokeStyle = `rgba(255, 100, 50, ${alpha * path.intensity})`;
+                        current_ctx.lineWidth = 2;
+
+                        current_ctx.moveTo(startX, startY);
+                        current_ctx.lineTo(edge.end.x, edge.end.y);
+
+                        current_ctx.shadowColor = `rgba(255, 100, 50, ${alpha * 0.5})`;
+                        current_ctx.shadowBlur = 5;
+                        current_ctx.stroke();
+
+                        current_ctx.shadowBlur = 0;
+                    });
+                });
+            }
+
+            function animate() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                ctxCollection.clearRect(0, 0, canvasCollection.width, canvasCollection.height);
+                ctxBenefit.clearRect(0, 0, canvasBenefit.width, canvasBenefit.height);
+                ctxCta.clearRect(0, 0, canvasCta.width, canvasCta.height);
+                ctxFooter.clearRect(0, 0, canvasFooter.width, canvasFooter.height);
+                ctxExtraFeatures.clearRect(0, 0, canvasExtraFeatures.width, canvasExtraFeatures.height); /* ADDED */
+                ctxCommunity.clearRect(0, 0, canvasCommunity.width, canvasCommunity.height); /* ADDED */
+                ctxApp.clearRect(0, 0, canvasApp.width, canvasApp.height); /* ADDED */
+
+
+                drawHoneycombOutline(ctx, edges);
+                drawHoneycombOutline(ctxCollection, edgesCollection);
+                drawHoneycombOutline(ctxBenefit, edgesBenefit);
+                drawHoneycombOutline(ctxCta, edgesCta);
+                drawHoneycombOutline(ctxFooter, edgesFooter);
+                drawHoneycombOutline(ctxExtraFeatures, edgesExtraFeatures); /* ADDED */
+                drawHoneycombOutline(ctxCommunity, edgesCommunity); /* ADDED */
+                drawHoneycombOutline(ctxApp, edgesApp); /* ADDED */
+
+
+                drawLights(ctx, edges, paths);
+                drawLights(ctxCollection, edgesCollection, pathsCollection);
+                drawLights(ctxBenefit, edgesBenefit, pathsBenefit);
+                drawLights(ctxCta, edgesCta, pathsCta);
+                drawLights(ctxFooter, edgesFooter, pathsFooter);
+                drawLights(ctxExtraFeatures, edgesExtraFeatures, pathsExtraFeatures); /* ADDED */
+                drawLights(ctxCommunity, edgesCommunity, pathsCommunity); /* ADDED */
+                drawLights(ctxApp, edgesApp, pathsApp); /* ADDED */
+
+
+                requestAnimationFrame(animate);
+            }
+
+            animate();
+        });
+
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // ===== Card Hover Effects =====
+            const featureCards = document.querySelectorAll('.feature-card');
+
+            featureCards.forEach(card => {
+                // Create glow element for each card
+                const glowEffect = document.createElement('div');
+                glowEffect.classList.add('card-glow-effect');
+                card.appendChild(glowEffect);
+
+                // Advanced hover effects
+                card.addEventListener('mouseenter', function (e) {
+                    // Scale up slightly
+                    this.style.transform = 'scale(1.03)';
+                    this.style.zIndex = '10';
+
+                    // Add border glow
+                    this.style.boxShadow = '0 0 25px rgba(255, 100, 100, 0.4)';
+                    this.style.borderColor = 'rgba(255, 100, 100, 0.5)';
+
+                    // Trigger glow animation
+                    glowEffect.style.opacity = '1';
+
+                    // Subtle content lift
+                    const cardContent = this.querySelector('h2, h3');
+                    if (cardContent) {
+                        cardContent.style.transform = 'translateY(-3px)';
+                    }
+
+                    // Follow cursor effect for glow
+                    this.addEventListener('mousemove', moveGlow);
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    // Reset all effects
+                    this.style.transform = 'scale(1)';
+                    this.style.zIndex = '1';
+                    this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.2)';
+                    this.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+
+                    // Hide glow
+                    glowEffect.style.opacity = '0';
+
+                    // Reset content position
+                    const cardContent = this.querySelector('h2, h3');
+                    if (cardContent) {
+                        cardContent.style.transform = 'translateY(0)';
+                    }
+
+                    // Remove mousemove listener
+                    this.removeEventListener('mousemove', moveGlow);
+                });
+
+                // Glow follow function
+                function moveGlow(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+
+                    glowEffect.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255, 100, 100, 0.3) 0%, rgba(255, 100, 100, 0) 70%)`;
+                }
+            });
+
+            // ===== Dynamic Elements =====
+
+            // Model selection buttons with active state
+            const modelBtns = document.querySelectorAll('.model-btn');
+            modelBtns.forEach(btn => {
+                btn.addEventListener('click', function () {
+                    modelBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+
+                    // Add pulse animation on selection
+                    this.classList.add('pulse-animation');
+                    setTimeout(() => {
+                        this.classList.remove('pulse-animation');
+                    }, 500);
+                });
+            });
+
+            // Theme toggle with smooth transition
+            const themeToggle = document.querySelector('.toggle-switch input');
+            if (themeToggle) {
+                themeToggle.addEventListener('change', function () {
+                    const cards = document.querySelectorAll('.feature-card');
+
+                    if (this.checked) {
+                        cards.forEach(card => {
+                            card.classList.add('light-theme-transition');
+                            setTimeout(() => {
+                                card.classList.add('light-theme');
+                            }, 50);
+                        });
+                    } else {
+                        cards.forEach(card => {
+                            card.classList.add('dark-theme-transition');
+                            card.classList.remove('light-theme');
+                            setTimeout(() => {
+                                card.classList.remove('dark-theme-transition');
+                                card.classList.remove('light-theme-transition');
+                            }, 500);
+                        });
+                    }
+                });
+            }
+
+            // Download/Learn More button effects
+            const actionBtns = document.querySelectorAll('.download-btn');
+            actionBtns.forEach(btn => {
+                btn.addEventListener('mouseenter', function () {
+                    // Button expand effect
+                    this.style.width = `${this.offsetWidth + 10}px`;
+                    this.style.boxShadow = '0 0 20px rgba(255, 100, 100, 0.5)';
+
+                    // Add arrow icon dynamically
+                    if (!this.querySelector('.btn-arrow')) {
+                        const arrow = document.createElement('span');
+                        arrow.classList.add('btn-arrow');
+                        arrow.innerHTML = '→';
+                        arrow.style.opacity = '0';
+                        arrow.style.marginLeft = '0';
+                        this.appendChild(arrow);
+
+                        // Animate arrow appearance
+                        setTimeout(() => {
+                            arrow.style.opacity = '1';
+                            arrow.style.marginLeft = '8px';
+                        }, 50);
+                    }
+                });
+
+                btn.addEventListener('mouseleave', function () {
+                    // Reset button size
+                    this.style.width = '';
+                    this.style.boxShadow = '';
+
+                    // Remove arrow
+                    const arrow = this.querySelector('.btn-arrow');
+                    if (arrow) {
+                        arrow.style.opacity = '0';
+                        arrow.style.marginLeft = '0';
+                        setTimeout(() => {
+                            arrow.remove();
+                        }, 300);
+                    }
+                });
+            });
+
+            // Animate numbers on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const numberElement = entry.target.querySelector('span.text-xl.font-bold');
+                        if (numberElement) {
+                            const finalNumber = parseInt(numberElement.textContent);
+                            animateNumber(numberElement, 0, finalNumber, 2000);
+                        }
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            // Find cards with numbers and observe them
+            featureCards.forEach(card => {
+                const hasNumber = card.querySelector('span.text-xl.font-bold');
+                if (hasNumber) {
+                    observer.observe(card);
+                }
+            });
+
+            // Number animation function
+            function animateNumber(element, start, end, duration) {
+                let startTimestamp = null;
+                const step = (timestamp) => {
+                    if (!startTimestamp) startTimestamp = timestamp;
+                    const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                    const currentNumber = Math.floor(progress * (end - start) + start);
+                    element.textContent = currentNumber;
+
+                    if (progress < 1) {
+                        window.requestAnimationFrame(step);
+                    }
+                };
+                window.requestAnimationFrame(step);
+            }
+
+            // Add CSS for new effects
+            const style = document.createElement('style');
+            style.textContent = `
+        .feature-card {
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease, z-index 0.3s ease;
+            overflow: hidden;
+        }
+
+        .card-glow-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .pulse-animation {
+            animation: pulse 0.5s ease-out;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .light-theme-transition, .dark-theme-transition {
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .light-theme {
+            background-color: rgba(255, 255, 255, 0.9);
+            color: #333;
+        }
+
+        .light-theme h2, .light-theme h3 {
+            color: #111;
+        }
+
+        .light-theme p {
+            color: #555;
+        }
+
+        .btn-arrow {
+            display: inline-block;
+            transition: opacity 0.3s ease, margin-left 0.3s ease;
+        }
+
+        .download-btn {
+            transition: width 0.3s ease, box-shadow 0.3s ease;
+        }
+    `;
+            document.head.appendChild(style);
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const cards = document.querySelectorAll('.collection-card');
+            const overlay = document.getElementById('overlay');
+            const showOverlayBtn = document.getElementById('show-overlay-btn');
+            const closeOverlayBtn = document.getElementById('close-overlay');
+            const startLibraryBtn = document.getElementById('start-library-btn');
+
+            // Make all cards interactive
+            cards.forEach(card => {
+                // Hover effect to dim other cards
+                card.addEventListener('mouseenter', function () {
+                    cards.forEach(c => {
+                        if (c !== this) {
+                            c.style.opacity = '0.6';
+                        }
+                    });
+                });
+
+                card.addEventListener('mouseleave', function () {
+                    cards.forEach(c => {
+                        c.style.opacity = '1';
+                    });
+                });
+
+                // Click to show overlay
+                card.addEventListener('click', function () {
+                    overlay.classList.add('active');
+                });
+            });
+
+            // Show overlay button
+            if (showOverlayBtn) {
+                showOverlayBtn.addEventListener('click', function () {
+                    overlay.classList.add('active');
+                });
+            }
+
+            // Close overlay
+            closeOverlayBtn.addEventListener('click', function () {
+                overlay.classList.remove('active');
+            });
+
+            // Start library button action
+            startLibraryBtn.addEventListener('click', function () {
+                alert('Starting your free library! This would redirect to the sign-up page on a real site.');
+            });
+
+            // Close overlay when clicking outside the card
+            overlay.addEventListener('click', function (e) {
+                if (e.target === overlay) {
+                    overlay.classList.remove('active');
+                }
+            });
+
+            // Add subtle hover animation to tags
+            const tags = document.querySelectorAll('.tag');
+            tags.forEach(tag => {
+                tag.addEventListener('mouseenter', function () {
+                    this.style.transform = 'translateY(-2px)';
+                });
+
+                tag.addEventListener('mouseleave', function () {
+                    this.style.transform = 'translateY(0)';
+                });
+            });
+
+            // Add keyboard accessibility
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape' && overlay.classList.contains('active')) {
+                    overlay.classList.remove('active');
+                }
+            });
+        });
+    </script>
+
+    <script>
+        //parallax scrpt
+        // Initialize GSAP ScrollTrigger plugin
+        gsap.registerPlugin(ScrollTrigger);
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // Create animations for each section
+            gsap.utils.toArray('.reveal-section').forEach(section => {
+                // Create a timeline for this section
+                const tl = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 80%", // Animation starts when top of section is 80% from top of viewport
+                        end: "top 20%",   // Animation ends when top of section is 20% from top of viewport
+                        scrub: 1,         // Smooth scrubbing effect (1 second lag)
+                        markers: false,   // Set to true for debugging
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                // Animate the content inside
+                tl.from(section.querySelector('.reveal-content'), {
+                    y: 100,             // Start 100px down
+                    opacity: 0,         // Start transparent
+                    duration: 1,        // Animation duration
+                    ease: "power2.out"  // Easing function
+                });
+
+                // Optional: Parallax background effect
+                if (section.querySelector('.parallax-bg')) {
+                    tl.to(section.querySelector('.parallax-bg'), {
+                        y: -50,           // Move background up by 50px
+                        ease: "none",     // Linear movement
+                    }, 0);             // Start at the same time as the content animation
+                }
+            });
+
+            // For sections with horizontal reveal (like sliding in from side)
+            gsap.utils.toArray('.horizontal-reveal').forEach(section => {
+                gsap.from(section, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: "top 70%",
+                        toggleActions: "play none none reverse"
+                    },
+                    x: -100,
+                    opacity: 0,
+                    duration: 1.2,
+                    ease: "power3.out"
+                });
+            });
+
+            // For pinning sections (keeping them in view while scrolling)
+            // This creates a effect where new content reveals over the pinned element
+            gsap.utils.toArray('.pin-section').forEach(section => {
+                ScrollTrigger.create({
+                    trigger: section,
+                    start: "top top",
+                    end: "+=100%",
+                    pin: true,
+                    pinSpacing: true
+                });
+            });
+        });
+
+        // For image sequence animation (like Rolex often uses)
+        function createImageSequence(containerId, imagesCount, folderPath) {
+            const container = document.getElementById(containerId);
+            const canvas = document.createElement('canvas');
+            const context = canvas.getContext('2d');
+            container.appendChild(canvas);
+
+            // Set canvas dimensions
+            canvas.width = container.offsetWidth;
+            canvas.height = container.offsetHeight;
+
+            // Preload all images
+            const images = [];
+            for (let i = 1; i <= imagesCount; i++) {
+                const img = new Image();
+                img.src = `${folderPath}/img_${i.toString().padStart(4, '0')}.jpg`;
+                images.push(img);
+            }
+
+            // Create the scroll-driven animation
+            ScrollTrigger.create({
+                trigger: container,
+                start: "top top",
+                end: "bottom bottom",
+                scrub: true,
+                onUpdate: (self) => {
+                    const imageIndex = Math.floor(self.progress * (imagesCount - 1));
+                    if (images[imageIndex] && images[imageIndex].complete) {
+                        context.drawImage(images[imageIndex], 0, 0, canvas.width, canvas.height);
+                    }
+                }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
