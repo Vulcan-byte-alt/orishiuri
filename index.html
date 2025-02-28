@@ -29,14 +29,12 @@
             color: #FFFFFF;
             /* Subtle Off-Whites and Neutrals */
             overflow-x: hidden;
-            /* Ensure no horizontal scroll */
         }
-    
+
         html {
-            overflow-x: hidden;
-            /* Ensure no horizontal scroll */
+            /* overflow: hidden;  REMOVED this line - this was locking the scroll */
         }
-    
+
         /* IKI.AI inspired glow effects */
         .glow-effect {
             position: absolute;
@@ -48,12 +46,12 @@
             filter: blur(50px);
             z-index: 0;
         }
-    
+
         .glow-purple {
             /* Modified glow colors to red - Brand Primary Color */
             background: radial-gradient(circle, rgba(255, 51, 51, 0.15) 0%, rgba(204, 0, 0, 0.05) 50%, rgba(5, 5, 5, 0) 70%);
         }
-    
+
         .gradient-text {
             /* Modified gradient to red and a slightly darker red - Brand Primary Color variations */
             background: linear-gradient(90deg, #FF3333 0%, #CC0000 100%);
@@ -61,7 +59,7 @@
             -webkit-text-fill-color: transparent;
             background-clip: text;
         }
-    
+
         /* Framer-inspired card designs */
         .framer-card {
             background: linear-gradient(140deg, rgba(255, 255, 255, 0.03) 0%, rgba(255, 255, 255, 0.01) 100%);
@@ -70,13 +68,13 @@
             transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
             transform-origin: center bottom;
         }
-    
+
         .framer-card:hover {
             transform: translateY(-8px) scale(1.02);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-    
+
         /* LaunchDarkly-inspired button styles */
         .button-primary {
             /* Modified gradient to red - Brand Primary Color */
@@ -86,7 +84,7 @@
             z-index: 1;
             overflow: hidden;
         }
-    
+
         .button-primary::before {
             content: "";
             position: absolute;
@@ -99,45 +97,45 @@
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             z-index: -1;
         }
-    
+
         .button-primary:hover::before {
             left: 0;
         }
-    
+
         .button-primary:hover {
             transform: translateY(-2px);
             /* Modified shadow to red - Brand Primary Color */
             box-shadow: 0 10px 25px -5px rgba(255, 51, 51, 0.4);
         }
-    
+
         .button-secondary {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-    
+
         .button-secondary:hover {
             background: rgba(255, 255, 255, 0.1);
             transform: translateY(-2px);
         }
-    
+
         /* IKI.AI-inspired navbar */
         .navbar {
             backdrop-filter: blur(10px);
             background: rgba(5, 5, 5, 0.8);
             border-bottom: 1px solid rgba(255, 255, 255, 0.05);
         }
-    
+
         /* 3D card effect */
         .card-3d {
             transform-style: preserve-3d;
             transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-    
+
         .card-3d:hover {
             transform: perspective(1000px) rotateX(10deg) rotateY(10deg) scale(1.05);
         }
-    
+
         /* IKI.AI-inspired collection cards */
         .collection-card {
             position: relative;
@@ -151,7 +149,7 @@
             transform: translateY(30px);
             /* ADDED - for animation */
         }
-    
+
         .collection-card::before {
             content: "";
             position: absolute;
@@ -164,17 +162,17 @@
             opacity: 0;
             transition: opacity 0.5s ease;
         }
-    
+
         .collection-card:hover {
             transform: translateY(-12px);
             box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.5);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-    
+
         .collection-card:hover::before {
             opacity: 1;
         }
-    
+
         /* Animated particles */
         .particle {
             position: absolute;
@@ -183,50 +181,50 @@
             opacity: 0;
             animation: float 8s infinite ease-in-out;
         }
-    
+
         @keyframes float {
             0% {
                 transform: translateY(0) translateX(0);
                 opacity: 0;
             }
-    
+
             25% {
                 opacity: 0.5;
             }
-    
+
             75% {
                 opacity: 0.5;
             }
-    
+
             100% {
                 transform: translateY(-100px) translateX(50px);
                 opacity: 0;
             }
         }
-    
+
         /* LaunchDarkly inspired feature list */
         .feature-item {
             opacity: 0;
             transform: translateY(30px);
         }
-    
+
         .feature-visible {
             opacity: 1;
             transform: translateY(0);
         }
-    
+
         .feature-icon {
             /* Modified gradient to red - Brand Primary Color */
             background: linear-gradient(140deg, rgba(255, 51, 51, 0.2) 0%, rgba(204, 0, 0, 0.2) 100%);
             transition: all 0.5s ease;
         }
-    
+
         .feature-item:hover .feature-icon {
             transform: scale(1.15) rotate(5deg);
             /* Modified gradient to red - Brand Primary Color */
             background: linear-gradient(140deg, rgba(255, 51, 51, 0.4) 0%, rgba(204, 0, 0, 0.4) 100%);
         }
-    
+
         /* Blob animation */
         .blob {
             position: absolute;
@@ -235,25 +233,25 @@
             opacity: 0.15;
             animation: blob-animation 20s infinite alternate ease-in-out;
         }
-    
+
         @keyframes blob-animation {
             0% {
                 transform: scale(1) translate(0, 0);
             }
-    
+
             33% {
                 transform: scale(1.2) translate(5%, 5%);
             }
-    
+
             66% {
                 transform: scale(0.8) translate(-5%, 5%);
             }
-    
+
             100% {
                 transform: scale(1.1) translate(0, -5%);
             }
         }
-    
+
         /* Grid system inspired by IKI.AI */
         .iki-grid {
             display: grid;
@@ -261,7 +259,7 @@
             gap: 2rem;
             transform-style: preserve-3d;
         }
-    
+
         /* Framer-inspired benefit cards */
         .benefit-card {
             position: relative;
@@ -275,37 +273,37 @@
             transform: translateY(30px);
             /* ADDED - for animation */
         }
-    
+
         .benefit-card:hover {
             transform: translateY(-10px) scale(1.05);
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.4);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-    
+
         .benefit-card:hover .icon-wrapper {
             transform: translateY(-10px) scale(1.1);
         }
-    
+
         .icon-wrapper {
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-    
+
         .image-placeholder {
             position: relative;
             overflow: hidden;
             border-radius: 16px;
             background: linear-gradient(140deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
             border: 1px solid rgba(255, 255, 255, 0.05);
-    
+
         }
-    
+
         .slide-in {
             animation: slide-in 0.8s forwards;
             transform: translateX(100%);
         }
-    
-    
-    
+
+
+
         .text-wrapper {
             position: absolute;
             width: 100%;
@@ -314,18 +312,18 @@
             transform: translateY(80px);
             opacity: 0;
         }
-    
-    
+
+
         .active {
             transform: translateY(0);
             opacity: 1;
         }
-    
+
         .exiting {
             transform: translateY(-80px);
             opacity: 0;
         }
-    
+
         .text {
             font-size: 120px;
             font-weight: bold;
@@ -334,24 +332,24 @@
             position: relative;
             letter-spacing: 2px;
         }
-    
-    
+
+
         /* Pulse Effect */
         @keyframes pulse {
             0% {
                 transform: scale(1);
             }
-    
+
             100% {
                 transform: scale(1.1);
             }
         }
-    
-    
+
+
         .text:hover {
             animation: wave 0.5s infinite alternate ease-in-out;
         }
-    
+
         /* Honeycomb Styles */
         #honeycomb-section,
         #collection-section,
@@ -361,11 +359,15 @@
         #extra-features,
         /* ADDED */
         #community,
-        #phone-app-section {
+        #phone-app-section
+        /* ADDED */
+
+        /* ADDED - Assuming 'community' section is the 'highlights' section */
+            {
             position: relative;
             overflow: hidden;
         }
-    
+
         #honeycomb-container,
         #honeycomb-container-collection,
         #honeycomb-container-benefit,
@@ -374,14 +376,18 @@
         #honeycomb-container-extra-features,
         /* ADDED */
         #honeycomb-container-community,
-        #honeycomb-container-app {
+        #honeycomb-container-app
+        /* ADDED */
+
+        /* ADDED */
+            {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
         }
-    
+
         #honeycomb-canvas,
         #honeycomb-canvas-collection,
         #honeycomb-canvas-benefit,
@@ -390,11 +396,15 @@
         #honeycomb-canvas-extra-features,
         /* ADDED */
         #honeycomb-canvas-community,
-        #honeycomb-canvas-app {
+        #honeycomb-canvas-app
+        /* ADDED */
+
+        /* ADDED */
+            {
             display: block;
             /* Ensure canvas takes up the full container */
         }
-    
+
         .honeycomb-overlay,
         .honeycomb-overlay-collection,
         .honeycomb-overlay-benefit,
@@ -403,7 +413,11 @@
         .honeycomb-overlay-extra-features,
         /* ADDED */
         .honeycomb-overlay-community,
-        .honeycomb-overlay-app {
+        .honeycomb-overlay-app
+        /* ADDED */
+
+        /* ADDED */
+            {
             position: absolute;
             inset: 0;
             background-color: rgba(0, 0, 0, 0.6);
@@ -411,7 +425,7 @@
             pointer-events: none;
             /* Make sure overlay doesn't interfere with interactions */
         }
-    
+
         /* Phone App Section Hover Effect */
         #phone-app-section:hover {
             transform: scale(1.01);
@@ -421,8 +435,8 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             /* Smooth transition */
         }
-    
-    
+
+        
         .feature-card {
             background-color: #1A1A1A;
             /* Dark Greys and Charcoals */
@@ -430,25 +444,25 @@
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             overflow: hidden;
         }
-    
+
         .feature-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
         }
-    
+
         .toggle-switch {
             position: relative;
             display: inline-block;
             width: 60px;
             height: 34px;
         }
-    
+
         .toggle-switch input {
             opacity: 0;
             width: 0;
             height: 0;
         }
-    
+
         .slider {
             position: absolute;
             cursor: pointer;
@@ -461,7 +475,7 @@
             transition: .4s;
             border-radius: 34px;
         }
-    
+
         .slider:before {
             position: absolute;
             content: "";
@@ -473,16 +487,16 @@
             transition: .4s;
             border-radius: 50%;
         }
-    
+
         input:checked+.slider {
             background-color: #FF3333;
             /* Red: Brand Primary Color */
         }
-    
+
         input:checked+.slider:before {
             transform: translateX(26px);
         }
-    
+
         .download-btn {
             background-color: white;
             color: black;
@@ -491,12 +505,12 @@
             transition: all 0.3s ease;
             font-weight: 500;
         }
-    
+
         .download-btn:hover {
             transform: scale(1.05);
             box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
         }
-    
+
         .model-btn {
             background-color: white;
             color: black;
@@ -506,18 +520,18 @@
             font-weight: 500;
             margin-bottom: 10px;
         }
-    
+
         .model-btn:hover {
             transform: scale(1.05);
             background-color: #f0f0f0;
         }
-    
+
         .model-btn.active {
             background-color: #FF3333;
             /* Red: Brand Primary Color */
             color: white;
         }
-    
+
         .collection-card {
             transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
             backface-visibility: hidden;
@@ -528,23 +542,23 @@
             background-color: #1A1A1A;
             /* Dark Greys and Charcoals */
         }
-    
+
         .collection-card:hover {
             transform: translateY(-8px);
             box-shadow: 0 8px 30px rgba(255, 255, 255, 0.1);
         }
-    
+
         .collection-card:hover .card-image {
             transform: scale(1.05);
         }
-    
+
         .card-image {
             transition: transform 0.5s ease;
             height: 180px;
             object-fit: cover;
             width: 100%;
         }
-    
+
         .tag {
             transition: all 0.2s ease;
             background-color: rgba(255, 255, 255, 0.1);
@@ -553,12 +567,12 @@
             font-size: 11px;
             color: rgba(255, 255, 255, 0.7);
         }
-    
+
         .tag:hover {
             background-color: rgba(255, 255, 255, 0.2);
             color: rgba(255, 255, 255, 0.9);
         }
-    
+
         .central-banner {
             background: rgba(30, 30, 30, 0.3);
             backdrop-filter: blur(10px);
@@ -568,7 +582,7 @@
             z-index: 10;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
-    
+
         .btn-primary {
             background-color: white;
             color: black;
@@ -577,13 +591,13 @@
             font-weight: 500;
             transition: all 0.2s ease;
         }
-    
+
         .btn-primary:hover {
             background-color: rgba(255, 255, 255, 0.9);
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
-    
+
         .overlay {
             position: fixed;
             top: 0;
@@ -600,12 +614,12 @@
             pointer-events: none;
             transition: opacity 0.3s ease;
         }
-    
+
         .overlay.active {
             opacity: 1;
             pointer-events: auto;
         }
-    
+
         .overlay-card {
             background-color: rgba(20, 20, 20, 0.95);
             border-radius: 20px;
@@ -615,7 +629,7 @@
             width: 90%;
             text-align: center;
         }
-    
+
         .moving-gradient {
             position: absolute;
             top: 0;
@@ -629,7 +643,7 @@
             mix-blend-mode: overlay;
             pointer-events: none;
         }
-    
+
         .collection-card {
             height: 420px;
             /* Base height for cards */
@@ -641,28 +655,20 @@
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1), box-shadow 0.5s ease;
         }
-    
+
         /* Image section styling */
         .collection-card .overflow-hidden {
             height: 65%;
             /* Image takes up more space like in IKI design */
-            max-width: 100%;
-            /* ADDED: Ensure image doesn't overflow */
         }
-    
+
         .collection-card img.card-image {
             width: 100%;
             height: 100%;
             object-fit: cover;
             transition: transform 0.7s ease;
-            max-width: 100%;
-            /* ADDED: Ensure image doesn't overflow */
-            width: 100%;
-            /* ADDED: Ensure image takes full width of container */
-            height: auto;
-            /* ADDED: Maintain aspect ratio */
         }
-    
+
         /* Content section styling */
         .collection-card .p-4 {
             flex: 1;
@@ -670,7 +676,7 @@
             flex-direction: column;
             justify-content: space-between;
         }
-    
+
         .community-container {
             overflow: hidden;
             height: 100vh;
@@ -680,265 +686,89 @@
             align-items: center;
             position: relative;
         }
-    
+
         .community-list1 {
             display: flex;
             flex-direction: column;
             animation: scrollUp 10s linear infinite;
         }
-    
+
         .community-list2 {
             display: flex;
             flex-direction: column;
             animation: scrollDown 10s linear infinite;
         }
-    
+
         @keyframes scrollUp {
             from {
                 transform: translateY(0%);
             }
-    
+
             to {
                 transform: translateY(-100%);
             }
         }
-    
+
         @keyframes scrollDown {
             from {
                 transform: translateY(0%);
             }
-    
+
             to {
                 transform: translateY(100%);
             }
         }
-    
         #loading-screen {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            flex-direction: column;
-            background: radial-gradient(circle, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
-            z-index: 9999;
-            position: fixed;
-            inset: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        background: radial-gradient(circle, rgba(0, 0, 0, 1), rgba(0, 0, 0, 1));
+        z-index: 9999;
+        position: fixed;
+        inset: 0;
+    }
+
+    .curtain-effect {
+        animation: curtain-lift 1.5s ease forwards;
+    }
+
+    @keyframes curtain-lift {
+        0% {
+            transform: translateY(0);
         }
-    
-        .curtain-effect {
-            animation: curtain-lift 1.5s ease forwards;
+        100% {
+            transform: translateY(-100%);
         }
-    
-        @keyframes curtain-lift {
-            0% {
-                transform: translateY(0);
-            }
-    
-            100% {
-                transform: translateY(-100%);
-            }
-        }
-    
-        .loading-spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid rgba(255, 255, 255, 0.3);
-            border-top: 5px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-    
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-    
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-    
-        .animated-dots::after {
-            content: '...';
-            animation: dots 1.5s infinite step-start;
-        }
-    
-        @keyframes dots {
-    
-            0%,
-            100% {
-                content: '.';
-            }
-    
-            33% {
-                content: '..';
-            }
-    
-            66% {
-                content: '...';
-            }
-        }
-    
-        /* Mobile Optimisations START */
-    
-        .iki-grid {
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-        }
-    
-        .collection-card {
-            height: auto;
-            flex-direction: column;
-        }
-    
-        .collection-card .overflow-hidden {
-            height: 200px;
-            max-width: 100%;
-        }
-    
-        .collection-card img.card-image {
-            max-width: 100%;
-            width: 100%;
-            height: auto;
-        }
-    
-        .collection-card .p-4 {
-            padding: 1.5rem;
-        }
-    
-        .text {
-            font-size: 80px;
-        }
-    
-        .hero-buttons {
-            flex-direction: column;
-        }
-    
-        .hero-buttons a {
-            width: 100%;
-            text-align: center;
-        }
-    
-        .md\:text-5xl {
-            font-size: 2.5rem;
-        }
-    
-        .md\:text-3xl {
-            font-size: 2rem;
-        }
-    
-        .text-xl {
-            font-size: 1rem;
-            line-height: 1.5rem;
-        }
-    
-        .px-6 {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-    
-        .py-20 {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-        }
-    
-        .mt-20 {
-            margin-top: 2rem;
-        }
-    
-        .mb-20 {
-            margin-bottom: 2rem;
-        }
-    
-        .md\:flex-row {
-            flex-direction: column;
-        }
-    
-        .md\:w-1\/2 {
-            width: 100%;
-        }
-    
-        .gap-12 {
-            gap: 2rem;
-        }
-    
-        .md\:text-left,
-        .text-center {
-            text-align: center;
-        }
-    
-        .md\:text-left {
-            text-align: left;
-        }
-    
-        .central-banner.lg\:block {
-            display: none !important;
-        }
-    
-        .grid-cols-1\.md\:grid-cols-2\.lg\:grid-cols-3 {
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-        }
-    
-        .grid-cols-1\.md\:grid-cols-2 {
-            grid-template-columns: 1fr;
-        }
-    
-        .iki-grid {
-            gap: 1.5rem;
-        }
-    
-        .space-x-8 {
-            margin-left: 0;
-        }
-    
-        .space-x-4 {
-            margin-left: 0;
-        }
-    
-        .hidden\.md\:flex {
-            display: none;
-        }
-    
-        #mobile-menu.hidden\.md\:hidden {
-            display: block;
-        }
-    
-        #mobile-menu {
-            display: none;
-        }
-    
-        .md\:hidden {
-            display: block;
-        }
-    
-        #mobile-menu a.mobile-nav-link,
-        #mobile-menu a.button-secondary,
-        #mobile-menu a.button-primary {
-            display: block;
-            width: 100%;
-            padding-left: 0;
-            padding-right: 0;
-            text-align: center;
-        }
-    
-        #mobile-menu a.button-secondary,
-        #mobile-menu a.button-primary {
-            margin-left: auto;
-            margin-right: auto;
-        }
-    
-        .glow-effect {
-            width: 600px;
-            height: 600px;
-            filter: blur(30px);
-        }
-    
-    
-        .blob {
-            width: 300px;
-            height: 300px;
-            filter: blur(40px);
-        }
-    
-        /* Mobile Optimisations END */
+    }
+
+    .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 5px solid rgba(255, 255, 255, 0.3);
+        border-top: 5px solid white;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+    }
+
+    @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+
+    .animated-dots::after {
+        content: '...';
+        animation: dots 1.5s infinite step-start;
+    }
+
+    @keyframes dots {
+        0%, 100% { content: '.'; }
+        33% { content: '..'; }
+        66% { content: '...'; }
+    }
+        
+
+        
     </style>
 </head>
 
@@ -1070,14 +900,13 @@
             <span
                 class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">ABOUT
                 US</span>
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 video-section-header md:text-3xl">
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 video-section-header">
                 <!-- ADDED CLASS -->
                 Discover Home Futures
                 <span class="gradient-text">in Action</span>
             </h2>
             <!-- ADDED CLASS -->
-            <p class="text-xl text-gray-300 mb-12 video-section-subheader text-lg">See how we're innovating the home
-                development
+            <p class="text-xl text-gray-300 mb-12 video-section-subheader">See how we're innovating the home development
                 market.</p>
             <!-- ADDED CLASS -->
             <div class="max-w-3xl mx-auto">
@@ -1105,13 +934,11 @@
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span
                     class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">FEATURES</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 feature-section-header md:text-3xl">
-                    <!-- ADDED CLASS -->
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 mt-4 feature-section-header"> <!-- ADDED CLASS -->
                     Empower your
                     <span class="gradient-text">investment flow</span>
                 </h2>
-                <p class="text-xl text-gray-300 feature-section-subheader text-lg">The Oroshiuri System blends
-                    established
+                <p class="text-xl text-gray-300 feature-section-subheader">The Oroshiuri System blends established
                     investment strategies with
                     innovative technology.</p>
             </div>
@@ -1128,10 +955,9 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Proven Investment Principles</h3>
                     <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Applies fundamental concepts like
-                        compounding,
+                    <p class="text-gray-300 feature-card-subheader">Applies fundamental concepts like compounding,
                         leverage, and growth
-                        exposure to provide a strategic approach to real estate investing.</p>
+                        exposure to provide a strategic approach to real estate investing.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Feature Card 2 -->
@@ -1145,10 +971,9 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Quick Completion of Brand-New Estates</h3>
                     <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Recognizes the value of promptly completed
-                        estates
+                    <p class="text-gray-300 feature-card-subheader">Recognizes the value of promptly completed estates
                         in driving
-                        higher-than-usual growth rate in high-potential markets.</p>
+                        higher-than-usual growth rate in high-potential markets.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Feature Card 3 -->
@@ -1162,10 +987,9 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Artificial Intelligence at Work</h3>
                     <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Incorporates AI technology to enhance
-                        efficiency and
+                    <p class="text-gray-300 feature-card-subheader">Incorporates AI technology to enhance efficiency and
                         decision-making by
-                        automating intricate data analysis and portfolio management.</p>
+                        automating intricate data analysis and portfolio management.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Feature Card 4 -->
@@ -1178,10 +1002,9 @@
                         </svg>
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Structured Process</h3> <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Offers a systematic approach to building
-                        and growing
+                    <p class="text-gray-300 feature-card-subheader">Offers a systematic approach to building and growing
                         a real estate
-                        portfolio, reducing uncertainty and facilitating efficient scaling.</p>
+                        portfolio, reducing uncertainty and facilitating efficient scaling.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Feature Card 5 -->
@@ -1195,10 +1018,9 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Efficient Collaboration</h3>
                     <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Fosters effective relationships between
-                        all
+                    <p class="text-gray-300 feature-card-subheader">Fosters effective relationships between all
                         stakeholders, supporting cost
-                        efficiency and high-quality development that meets Oroshiuri standards.</p>
+                        efficiency and high-quality development that meets Oroshiuri standards.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Feature Card 6 -->
@@ -1212,10 +1034,9 @@
                     </div>
                     <h3 class="text-xl font-bold mb-4 feature-card-header">Tailored to Investors</h3>
                     <!-- ADDED CLASS -->
-                    <p class="text-gray-300 feature-card-subheader text-base">Adapts to individual investor profiles
-                        including
+                    <p class="text-gray-300 feature-card-subheader">Adapts to individual investor profiles including
                         specific investment goals,
-                        risk tolerance, and experience, customisable to meet diverse needs.</p>
+                        risk tolerance, and experience, customisable to meet diverse needs.</p> <!-- ADDED CLASS -->
                 </div>
             </div>
         </div>
@@ -1236,14 +1057,12 @@
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span
                     class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">BENEFITS</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 benefit-section-header mt-4 md:text-3xl">
-                    <!-- ADDED CLASS -->
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 benefit-section-header mt-4"> <!-- ADDED CLASS -->
                     <span class="gradient-text">Membership</span> Benefits
                 </h2>
-                <p class="text-xl text-gray-300 benefit-section-subheader text-lg">Unlock exclusive opportunities and
-                    maximise
+                <p class="text-xl text-gray-300 benefit-section-subheader">Unlock exclusive opportunities and maximise
                     your returns with our
-                    membership benefits.</p>
+                    membership benefits.</p> <!-- ADDED CLASS -->
             </div>
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
 
@@ -1265,7 +1084,7 @@
                         <!-- ADDED CLASS -->
 
                     </div>
-                    <p class="text-gray-300 benefit-card-subheader text-base">
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
                         Access to premium, off-market real estate deals.
 
                     </p>
@@ -1287,7 +1106,7 @@
                         <h3 class="text-xl font-bold benefit-card-header">Project Updates</h3> <!-- ADDED CLASS -->
 
                     </div>
-                    <p class="text-gray-300 benefit-card-subheader text-base">
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
                         Stay informed with regular updates on project milestones and progress.
 
                     </p>
@@ -1310,7 +1129,7 @@
                         <h3 class="text-xl font-bold benefit-card-header">Additional Benefits</h3> <!-- ADDED CLASS -->
 
                     </div>
-                    <p class="text-gray-300 benefit-card-subheader text-base">
+                    <p class="text-gray-300 benefit-card-subheader"> <!-- ADDED CLASS -->
                         Enjoy priority access, exclusive resources, and personalised support to maximise investment
                         success
 
@@ -1339,19 +1158,17 @@
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span
                     class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">PORTFOLIO</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 collection-section-header md:text-3xl">
-                    <!-- ADDED CLASS -->
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 collection-section-header"> <!-- ADDED CLASS -->
                     <span class="gradient-text">Collected</span> in Home Futures
                 </h2>
-                <p class="text-xl text-gray-300 collection-section-subheader text-lg">Our portfolio of premium
-                    properties and
+                <p class="text-xl text-gray-300 collection-section-subheader">Our portfolio of premium properties and
                     investment opportunities
-                    curated for high returns.</p>
+                    curated for high returns.</p> <!-- ADDED CLASS -->
             </div>
 
             <div class="iki-grid">
                 <!-- Collection Card 1 -->
-                <div class="collection-card overflow-hidden collection-card-item"> <!-- ADDED CLASS -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
                     <div class="h-full p-6 flex flex-col justify-between relative z-10">
                         <div>
                             <div class="flex items-center space-x-2 mb-4">
@@ -1360,10 +1177,9 @@
                             </div>
                             <h3 class="text-2xl font-bold mb-2 collection-card-header">Coastal Villas</h3>
                             <!-- ADDED CLASS -->
-                            <p class="text-gray-300 collection-card-subheader text-base mb-4">Luxury beachfront
-                                properties with
+                            <p class="text-gray-300 collection-card-subheader mb-4">Luxury beachfront properties with
                                 exceptional ROI projections.
-                            </p>
+                            </p> <!-- ADDED CLASS -->
                         </div>
                         <div>
                             <div class="flex items-center justify-between mb-4">
@@ -1381,7 +1197,7 @@
                 </div>
 
                 <!-- Collection Card 2 -->
-                <div class="collection-card overflow-hidden collection-card-item"> <!-- ADDED CLASS -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
                     <div class="h-full p-6 flex flex-col justify-between relative z-10">
                         <div>
                             <div class="flex items-center space-x-2 mb-4">
@@ -1390,9 +1206,8 @@
                             </div>
                             <h3 class="text-2xl font-bold mb-2 collection-card-header">Urban Heights</h3>
                             <!-- ADDED CLASS -->
-                            <p class="text-gray-300 collection-card-subheader text-base mb-4">Modern apartments in
-                                thriving
-                                metropolitan centres.</p>
+                            <p class="text-gray-300 collection-card-subheader mb-4">Modern apartments in thriving
+                                metropolitan centres.</p> <!-- ADDED CLASS -->
                         </div>
                         <div>
                             <div class="flex items-center justify-between mb-4">
@@ -1410,7 +1225,7 @@
                 </div>
 
                 <!-- Collection Card 3 -->
-                <div class="collection-card overflow-hidden collection-card-item"> <!-- ADDED CLASS -->
+                <div class="collection-card overflow-hidden h-96 collection-card-item"> <!-- ADDED CLASS -->
                     <div class="h-full p-6 flex flex-col justify-between relative z-10">
                         <div>
                             <div class="flex items-center space-x-2 mb-4">
@@ -1419,10 +1234,9 @@
                             </div>
                             <h3 class="text-2xl font-bold mb-2 collection-card-header">Suburban Estates</h3>
                             <!-- ADDED CLASS -->
-                            <p class="text-gray-300 collection-card-subheader text-base mb-4">Family homes in rapidly
-                                growing
+                            <p class="text-gray-300 collection-card-subheader mb-4">Family homes in rapidly growing
                                 suburban areas with high
-                                appreciation potential.</p>
+                                appreciation potential.</p> <!-- ADDED CLASS -->
                         </div>
                         <div>
                             <div class="flex items-center justify-between mb-4">
@@ -1454,24 +1268,22 @@
             <div class="text-center max-w-3xl mx-auto mb-20">
                 <span
                     class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">HIGHLIGHTS</span>
-                <h2 class="text-3xl md:text-5xl font-bold mb-6 extra-features-section-header md:text-3xl">
-                    <!-- ADDED CLASS -->
+                <h2 class="text-3xl md:text-5xl font-bold mb-6 extra-features-section-header"> <!-- ADDED CLASS -->
                     <span class="gradient-text">Securing Your Tomorrow</span>, Today
                 </h2>
-                <p class="text-xl text-gray-300 extra-features-section-subheader text-lg">FOR THE BENEFIT OF MEMBERS</p>
+                <p class="text-xl text-gray-300 extra-features-section-subheader">FOR THE BENEFIT OF MEMBERS</p>
+                <!-- ADDED CLASS -->
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 <!-- Investment Principles Card -->
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
-                    <h2 class="text-3xl font-bold extra-features-card-header md:text-2xl">Grounded in proven principles
-                    </h2>
+                    <h2 class="text-3xl font-bold extra-features-card-header">Grounded in proven principles</h2>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">The Oroshiuri System applies
-                        fundamental
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">The Oroshiuri System applies fundamental
                         investment concepts,
                         including
-                        compounding, leverage, and growth exposure.</p>
+                        compounding, leverage, and growth exposure.</p> <!-- ADDED CLASS -->
                     <div class="mt-4 invisible">Spacer</div>
                 </div>
 
@@ -1480,13 +1292,11 @@
                     <!-- ADDED CLASS -->
                     <div class="flex flex-col h-full justify-between">
                         <div>
-                            <h2 class="text-3xl font-bold extra-features-card-header md:text-2xl">Quick completion of
-                                brand-new
+                            <h2 class="text-3xl font-bold extra-features-card-header">Quick completion of brand-new
                                 estates</h2> <!-- ADDED CLASS -->
-                            <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">Creating the right
-                                conditions
+                            <p class="mt-2 text-gray-400 extra-features-card-subheader">Creating the right conditions
                                 within high-potential markets to
-                                stimulate rapid appreciation.</p>
+                                stimulate rapid appreciation.</p> <!-- ADDED CLASS -->
 
                             <div class="mt-8 bg-gray-900 p-4 rounded-lg">
                                 <div class="flex items-center mb-2">
@@ -1537,14 +1347,12 @@
 
                 <!-- AI Technology Card -->
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
-                    <h3 class="text-2xl font-semibold extra-features-card-header md:text-xl">Artificial Intelligence at
-                        work</h3>
+                    <h3 class="text-2xl font-semibold extra-features-card-header">Artificial Intelligence at work</h3>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">Enhancing efficiency and
-                        decision-making
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Enhancing efficiency and decision-making
                         through automated data
                         analysis.
-                    </p>
+                    </p> <!-- ADDED CLASS -->
                     <div class="flex items-center mt-4">
                         <span class="text-xl font-bold mr-2">124</span>
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -1583,21 +1391,19 @@
                         <div class="h-2 bg-gray-700 rounded w-4/6"></div>
                     </div>
 
-                    <h3 class="text-2xl font-semibold extra-features-card-header mt-4 md:text-xl">Structured process
-                    </h3>
+                    <h3 class="text-2xl font-semibold extra-features-card-header mt-4">Structured process</h3>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">A systematic approach reducing
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">A systematic approach reducing
                         uncertainty and facilitating efficient
-                        scaling.</p>
+                        scaling.</p> <!-- ADDED CLASS -->
                 </div>
 
                 <!-- Efficient Collaboration Card -->
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
-                    <h2 class="text-3xl font-bold extra-features-card-header md:text-2xl">Efficient collaboration</h2>
+                    <h2 class="text-3xl font-bold extra-features-card-header">Efficient collaboration</h2>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">Fostering effective
-                        relationships
-                        between all stakeholders.</p>
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Fostering effective relationships
+                        between all stakeholders.</p> <!-- ADDED CLASS -->
 
                     <div class="mt-6 flex flex-col items-end">
                         <button id="gpt4" class="model-btn active mb-2 w-28 text-center">Builders</button>
@@ -1608,11 +1414,10 @@
 
                 <!-- Tailored to Investors Card -->
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
-                    <h3 class="text-2xl font-semibold extra-features-card-header md:text-xl">Tailored to investors</h3>
+                    <h3 class="text-2xl font-semibold extra-features-card-header">Tailored to investors</h3>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">Adapts to individual investor
-                        profiles,
-                        goals, and risk tolerance.</p>
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Adapts to individual investor profiles,
+                        goals, and risk tolerance.</p> <!-- ADDED CLASS -->
 
                     <div class="mt-6 flex justify-center">
                         <label class="toggle-switch">
@@ -1626,18 +1431,16 @@
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
                     <div class="flex justify-between items-center h-full">
                         <div>
-                            <h3 class="text-2xl font-semibold extra-features-card-header md:text-xl">Home<br>Futures
-                            </h3>
+                            <h3 class="text-2xl font-semibold extra-features-card-header">Home<br>Futures</h3>
                             <!-- ADDED CLASS -->
-                            <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">A fresh approach to
-                                real estate.
-                            </p>
+                            <p class="mt-2 text-gray-400 extra-features-card-subheader">A fresh approach to real estate.
+                            </p> <!-- ADDED CLASS -->
                         </div>
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16" viewBox="0 0 20 20"
                             fill="currentColor">
                             <path fill-rule="evenodd"
-                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2-2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
+                                d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z"
                                 clip-rule="evenodd" />
                         </svg>
                     </div>
@@ -1645,10 +1448,11 @@
 
                 <!-- Membership Benefits Card -->
                 <div class="feature-card p-10 extra-features-card-item"> <!-- ADDED CLASS -->
-                    <h2 class="text-3xl font-bold extra-features-card-header md:text-2xl">Membership benefits</h2>
+                    <h2 class="text-3xl font-bold extra-features-card-header">Membership benefits</h2>
                     <!-- ADDED CLASS -->
-                    <p class="mt-2 text-gray-400 extra-features-card-subheader text-base">Our collective advantage</p>
-                    <ul class="mt-4 text-gray-300 extra-features-card-subheader text-base">
+                    <p class="mt-2 text-gray-400 extra-features-card-subheader">Our collective advantage</p>
+                    <!-- ADDED CLASS -->
+                    <ul class="mt-4 text-gray-300 extra-features-card-subheader"> <!-- ADDED CLASS -->
                         <li class="flex items-center mb-2">
                             <div class="h-2 w-2 rounded-full bg-red-500 mr-2"></div>
                             Exclusive Opportunities
@@ -1685,18 +1489,16 @@
                         <span
                             class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">MOBILE
                             APP</span>
-                        <h2 class="text-3xl md:text-5xl font-bold mb-6 phone-app-section-header md:text-3xl">
-                            <!-- ADDED CLASS -->
+                        <h2 class="text-3xl md:text-5xl font-bold mb-6 phone-app-section-header"> <!-- ADDED CLASS -->
                             Unlock the Future of Home Development,<span class="gradient-text"> On-the-Go</span>
                         </h2>
-                        <p class="text-xl text-gray-300 phone-app-section-subheader text-lg">
+                        <p class="text-xl text-gray-300 phone-app-section-subheader">
                             <!-- ADDED CLASS -->
                             Manage your projects, track investments, and stay connected with Home Futures, all from our
                             intuitive mobile app.
                         </p>
                     </div>
-                    <h3 class="text-2xl font-bold mb-6 phone-app-features-header mt-4 md:text-xl">Key Features at Your
-                        Fingertips
+                    <h3 class="text-2xl font-bold mb-6 phone-app-features-header mt-4">Key Features at Your Fingertips
                     </h3>
                     <!-- ADDED CLASS -->
                     <ul class="space-y-4 mb-8 phone-app-features-list">
@@ -1708,7 +1510,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
                             </div>
-                            <p class="text-gray-300 text-base">Real-time project tracking and updates.</p>
+                            <p class="text-gray-300">Real-time project tracking and updates.</p>
                         </li>
                         <li class="flex items-start">
                             <div class="mr-2 text-red-400">
@@ -1717,7 +1519,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
                             </div>
-                            <p class="text-gray-300 text-base">Secure investment portfolio management.</p>
+                            <p class="text-gray-300">Secure investment portfolio management.</p>
                         </li>
                         <li class="flex items-start">
                             <div class="mr-2 text-red-400">
@@ -1726,7 +1528,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
                             </div>
-                            <p class="text-gray-300 text-base">Direct communication with project teams.</p>
+                            <p class="text-gray-300">Direct communication with project teams.</p>
                         </li>
                         <li class="flex items-start">
                             <div class="mr-2 text-red-400">
@@ -1735,7 +1537,7 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
                                 </svg>
                             </div>
-                            <p class="text-gray-300 text-base">Personalised alerts and notifications.</p>
+                            <p class="text-gray-300">Personalised alerts and notifications.</p>
                         </li>
                     </ul>
                     <div class="flex gap-4 justify-start">
@@ -1816,12 +1618,12 @@
         <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
             <span
                 class="inline-block px-6 py-1 rounded-full bg-white/5 backdrop-blur-xl border border-white/5 text-sm font-medium mb-6 text-red-300">INSIGHTS</span>
-            <h2 class="text-3xl md:text-5xl font-bold mb-6 community-section-header md:text-3xl"> <!-- ADDED CLASS -->
+            <h2 class="text-3xl md:text-5xl font-bold mb-6 community-section-header"> <!-- ADDED CLASS -->
                 <span class="gradient-text">Explore Our</span> Expertise
             </h2>
-            <p class="text-xl text-gray-300 community-section-subheader text-lg">Learn about AI-driven solutions and
-                business
+            <p class="text-xl text-gray-300 community-section-subheader">Learn about AI-driven solutions and business
                 transformation.</p>
+            <!-- ADDED CLASS -->
         </div>
         <div class="max-w-6xl mx-auto relative z-10">
 
@@ -1829,8 +1631,8 @@
             <div class="central-banner absolute lg:block hidden top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 py-8 px-12 text-center"
                 style="width: 300px;">
                 <div class="moving-gradient"></div>
-                <h2 class="text-4xl font-bold mb-6 community-banner-header md:text-2xl">Deep Dive into<br>AI Solutions
-                </h2>
+                <h2 class="text-4xl font-bold mb-6 community-banner-header">Deep Dive into<br>AI Solutions</h2>
+                <!-- ADDED CLASS -->
 
                 <a href="/contact" class="btn-primary">Book a consultation</a>
             </div>
@@ -1996,11 +1798,11 @@
         <div class="blob bg-white/10" style="width: 400px; height: 400px; top: -100px; left: -100px;"></div>
         <div class="blob bg-white/10" style="width: 500px; height: 500px; bottom: -150px; right: -100px;"></div>
         <div class="container mx-auto px-4 text-center relative z-10">
-            <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 cta-section-header md:text-3xl">
-                <!-- ADDED CLASS -->
+            <h2 class="text-4xl md:text-6xl font-bold text-white mb-8 cta-section-header"> <!-- ADDED CLASS -->
                 Ready to Secure Your Future Property?
             </h2>
-            <p class="text-xl text-white/80 mb-12 max-w-3xl mx-auto cta-section-subheader text-lg">
+            <p class="text-xl text-white/80 mb-12 max-w-3xl mx-auto cta-section-subheader"> <!-- ADDED CLASS -->
+
                 Join Home Futures and start benefiting from monthly payments towards your future property at today's
                 prices.
             </p>
@@ -2021,7 +1823,7 @@
                     <div class="w-36 mb-5">
                         <img src="oroshiuri-web-logo.png" alt="Oroshiuri" class="w-full h-auto rounded-lg">
                     </div>
-                    <p class="text-gray-400 leading-relaxed text-base">
+                    <p class="text-gray-400 leading-relaxed">
                         Smarter Development. Better Homes. Revolutionising real estate investment for a brighter future.
                     </p>
                 </div>
@@ -2030,13 +1832,10 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Quick Links</h4>
                     <ul class="space-y-3">
-                        <li><a href="/" class="text-gray-400 hover:text-red-600 transition text-base">Home</a></li>
-                        <li><a href="/about" class="text-gray-400 hover:text-red-600 transition text-base">About</a>
-                        </li>
-                        <li><a href="/contact" class="text-gray-400 hover:text-red-600 transition text-base">Contact</a>
-                        </li>
-                        <li><a href="/insights"
-                                class="text-gray-400 hover:text-red-600 transition text-base">Insights</a></li>
+                        <li><a href="/" class="text-gray-400 hover:text-red-600 transition">Home</a></li>
+                        <li><a href="/about" class="text-gray-400 hover:text-red-600 transition">About</a></li>
+                        <li><a href="/contact" class="text-gray-400 hover:text-red-600 transition">Contact</a></li>
+                        <li><a href="/insights" class="text-gray-400 hover:text-red-600 transition">Insights</a></li>
                     </ul>
                 </div>
 
@@ -2044,23 +1843,20 @@
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Member Benefits</h4>
                     <ul class="space-y-3">
-                        <li><a href="/benefits" class="text-gray-400 hover:text-red-600 transition text-base">Benefits
-                                for
+                        <li><a href="/benefits" class="text-gray-400 hover:text-red-600 transition">Benefits for
                                 Members</a></li>
-                        <li><a href="/affiliate" class="text-gray-400 hover:text-red-600 transition text-base">Become an
+                        <li><a href="/affiliate" class="text-gray-400 hover:text-red-600 transition">Become an
                                 Affiliate</a></li>
-                        <li><a href="/login" class="text-gray-400 hover:text-red-600 transition text-base">Login</a>
-                        </li>
-                        <li><a href="/futures" class="text-gray-400 hover:text-red-600 transition text-base">Futures</a>
-                        </li>
+                        <li><a href="/login" class="text-gray-400 hover:text-red-600 transition">Login</a></li>
+                        <li><a href="/futures" class="text-gray-400 hover:text-red-600 transition">Futures</a></li>
                     </ul>
                 </div>
 
                 <!-- Contact Info & Newsletter -->
                 <div>
                     <h4 class="text-lg font-semibold text-white mb-4">Contact Us</h4>
-                    <p class="text-gray-400 mb-2 text-base">Unit 3 / 10 Vine Street, Clayfield, 4011, Australia</p>
-                    <p class="text-gray-400 mb-4 text-base">
+                    <p class="text-gray-400 mb-2">Unit 3 / 10 Vine Street, Clayfield, 4011, Australia</p>
+                    <p class="text-gray-400 mb-4">
                         <a href="mailto:support@oroshiuri.com.au" class="hover:text-red-600 transition">
                             support@oroshiuri.com.au
                         </a>
@@ -2069,7 +1865,7 @@
                     <h4 class="text-lg font-semibold text-white mb-3">Newsletter</h4>
                     <div class="flex">
                         <input type="email" placeholder="Your email"
-                            class="w-full bg-black/50 border border-gray-700 rounded-l-lg py-2 px-4 focus:border-yellow-400 transition text-base">
+                            class="w-full bg-black/50 border border-gray-700 rounded-l-lg py-2 px-4 focus:border-yellow-400 transition">
                         <button class="bg-red-600 px-5 rounded-r-lg text-black hover:bg-yellow-500 transition">
                             <i class="fas fa-paper-plane"></i>
                         </button>
@@ -2940,12 +2736,12 @@
 
 
             generatePaths(edges, paths);
-            generatePaths(edgesCollection, edgesCollection);
-            generatePaths(edgesBenefit, edgesBenefit);
-            generatePaths(edgesCta, edgesCta);
-            generatePaths(edgesFooter, edgesFooter);
-            generatePaths(edgesExtraFeatures, edgesExtraFeatures); /* ADDED */
-            generatePaths(edgesCommunity, edgesCommunity); /* ADDED */
+            generatePaths(edgesCollection, pathsCollection);
+            generatePaths(edgesBenefit, pathsBenefit);
+            generatePaths(edgesCta, pathsCta);
+            generatePaths(edgesFooter, pathsFooter);
+            generatePaths(edgesExtraFeatures, pathsExtraFeatures); /* ADDED */
+            generatePaths(edgesCommunity, pathsCommunity); /* ADDED */
             generatePaths(edgesApp, pathsApp); /* ADDED */
 
 
@@ -3423,6 +3219,7 @@
             });
 
             // For pinning sections (keeping them in view while scrolling)
+            // This creates a effect where new content reveals over the pinned element
             gsap.utils.toArray('.pin-section').forEach(section => {
                 ScrollTrigger.create({
                     trigger: section,
